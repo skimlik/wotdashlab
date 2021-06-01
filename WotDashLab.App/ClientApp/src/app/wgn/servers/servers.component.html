@@ -1,0 +1,11 @@
+﻿<div class="servers-container">
+  <div class="header mb-1">
+    <h3>
+      WGN Servers
+      <small class="text-muted">Healthy status</small>
+    </h3>
+  </div>
+  <div class="body">
+    <h6 *ngFor="let t of apiTypes$ | async">{{t.name}}</h6>
+  </div>
+</div>

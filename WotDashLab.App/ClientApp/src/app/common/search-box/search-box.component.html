@@ -1,0 +1,74 @@
+﻿<div
+  class="search-box-container form-control me-2 search-input"
+  [style.maxWidth]="maxWidth ? maxWidth + 'px' : 'auto'"
+  (window:resize)="resize($event)">
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    (focus)="open()"
+    (keydown)="onKeyDown($event)"
+    [ngModel]="text$ | async"
+    (ngModelChange)="modelChange($event)"
+    aria-label="Search">
+
+  <div class="action-icon">
+    <i *ngIf="searching$ | async" class="fa fa-circle-o-notch fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+    <i *ngIf="(text$ | async) && !(searching$ | async)" (click)="clear()" class="fa fa-close fa-1x" aria-hidden="true"></i>
+  </div>
+</div>
+
+<div
+  class="drop-down-area shadow rounded bg-white"
+  [style.width]="dropDownWidth ? dropDownWidth + 'px' : 'auto'"
+  [style.minWidth]="dropDownWidth ? dropDownWidth + 'px' : 'auto'">
+
+  <ng-container *ngIf="text$ | async as text; else welcomeMessage">
+    <ng-container *ngIf="text && text.length >= minSearchTextLength; else searchIsTooSmall">
+      <ng-container *ngTemplateOutlet="searchResults; context { $implicit: text }"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #searchIsTooSmall>
+  <div class="drop-down-container welcome-container">
+    <span class="welcome-message">
+      Search text is too short, please refine..
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #welcomeMessage>
+  <div class="drop-down-container welcome-container" *ngIf="!(text$ | async)">
+    <span class="welcome-message">
+      Search by typing nickname first letters
+      <br />
+      Search by typing comma separated exact names
+    </span>
+  </div>
+</ng-template>
+
+<ng-template #searchResults let-text>
+  <div class="drop-down-container search-container ms-0 me-0">
+    <div class="items-area p-0 flex flex-column">
+      <div
+        class="search-item d-flex flex-nowrap ps-3 m-0 dropdown-item justify-content-between"
+        *ngFor="let item of items; let ix = index;"
+        [ngClass]="{ 'active': activeItemIndex === ix}"
+        (click)="itemSelected(item)"
+      >
+        <div class="item-icon search-item-icon me-3 ms-0 text-muted">
+          <i class="fa fa-user text-muted fa-1x" aria-hidden="true"></i>
+        </div>
+        <div class="item-name text-primary search-item-text text-truncate">
+          <a class="link-primary">{{item?.name}}</a>
+        </div>
+        <div class="item-id text-truncate text-end">
+          <a class="link-secondary">{{item?.id}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-area align-middle text-center mt-2" *ngIf="!(searching$ | async) && text">
+      <a (click)="showAllResults(text)" class="show-all-btn link-secondary">View all results</a>
+    </div>
+  </div>
+</ng-template>

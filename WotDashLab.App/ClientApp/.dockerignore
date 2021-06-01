@@ -1,0 +1,11 @@
+**/.git
+**/.vscode
+**/.idea
+**/node_modules
+**/e2e
+.idea/**/*
+.vscode/**/*
+.idea
+.git
+node_modules/**/*
+npm-debug.log

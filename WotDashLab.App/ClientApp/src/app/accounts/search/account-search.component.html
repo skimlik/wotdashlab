@@ -1,0 +1,27 @@
+﻿<div class="account-search-container pt-2 full-height">
+  <div class="row">
+    <div class="col-md-6 col-sm-9 col-xs-12">
+      <form class="d-flex">
+        <input class="form-control me-2" name="searchText" type="search" placeholder="Search" [(ngModel)]="searchText" aria-label="Search">
+        <button (click)="search()" [disabled]="searchText?.length < 3" class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="row full-height">
+    <div class="col-xl-12 mt-2">
+      <ag-grid-angular
+          #grid
+          id="accountsGrid"
+          class="ag-theme-alpine"
+          style="width: 100%"
+          rowSelection="single"
+          [components]="components"
+          [context]="context"
+          [rowData]="rowData$ | async"
+          [columnDefs]="gridColumns"
+          [defaultColDef]="defaultColDef"
+          (gridReady)="onGridReady($event)"
+      ></ag-grid-angular>
+    </div>
+  </div>
+</div>

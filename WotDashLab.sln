@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.App", "WotDashLab.App\WotDashLab.App.csproj", "{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{E27BDB4A-2049-4BCC-B3EC-F1973FBAB949}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.WebApi.Contracts", "WotDashLab.WebApi.Contracts\WotDashLab.WebApi.Contracts.csproj", "{BA019276-E7F6-45C6-8EED-4D3AA2B855C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.Wot.Client", "WotDashLab.Wot.Client\WotDashLab.Wot.Client.csproj", "{904BA278-EB2C-4320-BF15-E0898E554C92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.Wot.Client.Contracts", "WotDashLab.Wot.Client.Contracts\WotDashLab.Wot.Client.Contracts.csproj", "{00B02E43-77BC-460D-AD31-A802EE408750}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.Services", "WotDashLab.Services\WotDashLab.Services.csproj", "{1957A843-9202-4523-8039-5ACCDD70BF11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.Abstractions", "WotDashLab.Abstractions\WotDashLab.Abstractions.csproj", "{72AAD059-AB5E-4E80-A447-BD9A084E2257}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA019276-E7F6-45C6-8EED-4D3AA2B855C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA019276-E7F6-45C6-8EED-4D3AA2B855C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA019276-E7F6-45C6-8EED-4D3AA2B855C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA019276-E7F6-45C6-8EED-4D3AA2B855C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904BA278-EB2C-4320-BF15-E0898E554C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904BA278-EB2C-4320-BF15-E0898E554C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904BA278-EB2C-4320-BF15-E0898E554C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904BA278-EB2C-4320-BF15-E0898E554C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B02E43-77BC-460D-AD31-A802EE408750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B02E43-77BC-460D-AD31-A802EE408750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B02E43-77BC-460D-AD31-A802EE408750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B02E43-77BC-460D-AD31-A802EE408750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1957A843-9202-4523-8039-5ACCDD70BF11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1957A843-9202-4523-8039-5ACCDD70BF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1957A843-9202-4523-8039-5ACCDD70BF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1957A843-9202-4523-8039-5ACCDD70BF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72AAD059-AB5E-4E80-A447-BD9A084E2257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72AAD059-AB5E-4E80-A447-BD9A084E2257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72AAD059-AB5E-4E80-A447-BD9A084E2257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72AAD059-AB5E-4E80-A447-BD9A084E2257}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5} = {E27BDB4A-2049-4BCC-B3EC-F1973FBAB949}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5948B1D-AD27-4D0C-B621-2CED8D65743C}
+	EndGlobalSection
+EndGlobal

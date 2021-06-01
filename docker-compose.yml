@@ -1,0 +1,25 @@
+version: "3.9"
+services: 
+    client:
+        container_name: client.local
+        restart: always
+        build: ./WotDashLab.App/ClientApp
+        ports:
+            - "8080:4200"
+        depends_on:
+            - api
+        networks:
+            - vnet
+    api:
+        container_name: WotDashLab.local
+        build: .
+        restart: always
+        ports:
+            - "4283:80"
+        networks:
+            - vnet
+        env_file: .env
+        environment:
+            - Wot:ApplicationId
+networks:
+    vnet:
