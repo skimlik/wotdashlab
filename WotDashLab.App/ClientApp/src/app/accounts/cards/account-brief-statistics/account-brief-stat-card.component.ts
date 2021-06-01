@@ -23,8 +23,34 @@ export class AccountBriefStatisticsCardComponent {
     return this.profile?.statistics?.all?.battles || 0;
   }
 
+  get damageReceived(): number {
+    return this.profile?.statistics?.all?.damageReceived || 0;
+  }
+
+  get damageDealt(): number {
+    return this.profile?.statistics?.all?.damageDealt || 0;
+  }
+
+  get damageRatio(): number {
+    if (this.damageReceived) {
+      return this.damageDealt / this.damageReceived
+    }
+    return 0;
+  }
+
+  get survived(): number {
+    return this.profile?.statistics?.all.survivedBattles || 0;
+  }
+
+  get survivedRatio(): number {
+    if (this.battles) {
+      return this.survived / this.battles;
+    }
+    return 0;
+  }
+
   get winRate(): number {
-    if (this.wins) {
+    if (this.battles) {
       return this.wins / this.battles;
     }
     return 0;

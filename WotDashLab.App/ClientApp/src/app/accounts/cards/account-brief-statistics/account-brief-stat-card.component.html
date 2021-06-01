@@ -6,22 +6,26 @@
       <div class="d-table w-100">
         <div class="d-table-row w-100">
           <div class="d-table-cell w-50 text-secondary">Battles</div>
-          <div class="d-table-cell ps-1 text-end w-50">{{battles}}</div>
+          <div class="d-table-cell ps-1 text-end w-50">{{battles | number}}</div>
+        </div>
+        <div class="d-table-row w-100">
+          <div class="d-table-cell w-50 text-secondary">Survived ({{survivedRatio | percent:'1.2-2'}})</div>
+          <div class="d-table-cell ps-1 text-end w-50">{{survived | number}}</div>
         </div>
         <div class="d-table-row w-100">
           <div class="d-table-cell w-50 text-secondary">Average XP</div>
-          <div class="d-table-cell ps-1 text-end w-50">{{profile?.statistics?.all?.battleAvgXp || 0}}</div>
+          <div class="d-table-cell ps-1 text-end w-50">{{profile?.statistics?.all?.battleAvgXp || 0 | number}}</div>
         </div>
         <div class="d-table-row w-100">
-          <div class="d-table-cell w-50 text-secondary">Damage</div>
+          <div class="d-table-cell w-50 text-secondary">Damage ratio ({{damageRatio | percent:'1.2-2'}})</div>
           <div class="d-table-cell ps-1 text-end w-50">
-            {{profile?.statistics?.all?.damageDealt || 0}} / {{profile?.statistics?.all?.damageReceived}}
+            {{damageDealt | number}} / {{damageReceived | number}}
           </div>
         </div>
         <div class="d-table-row w-100">
           <div class="d-table-cell w-50 text-secondary">Frags</div>
           <div class="d-table-cell ps-1 text-end w-50">
-            {{profile?.statistics?.all?.frags || 0}}
+            {{profile?.statistics?.all?.frags || 0 | number}}
           </div>
         </div>
       </div>
