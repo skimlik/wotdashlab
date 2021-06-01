@@ -25,7 +25,7 @@ export class AccountBriefStatisticsCardComponent {
 
   get winRate(): number {
     if (this.wins) {
-      return this.losses / this.battles;
+      return this.wins / this.battles;
     }
     return 0;
   }
