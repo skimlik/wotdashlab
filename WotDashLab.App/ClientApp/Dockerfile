@@ -26,5 +26,5 @@ EXPOSE 4200
 FROM nginx AS host
 WORKDIR /usr/src/app
 COPY --from=base /usr/src/app/dist/WotDashLab .
-COPY ./hosting/nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./hosting/proxy.conf /etc/nginx/conf.d/includes
+COPY ./hosting/development/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./hosting/development/proxy.conf /etc/nginx/conf.d/includes

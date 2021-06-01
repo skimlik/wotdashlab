@@ -23,6 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.Abstractions", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development", "{68D40F27-B121-4E3E-8FCE-47F871FAF1B0}"
+ProjectSection(SolutionItems) = preProject
+	docker-compose.yml = docker-compose.yml
+	Dockerfile = Dockerfile
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +65,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5} = {E27BDB4A-2049-4BCC-B3EC-F1973FBAB949}
+		{68D40F27-B121-4E3E-8FCE-47F871FAF1B0} = {9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5948B1D-AD27-4D0C-B621-2CED8D65743C}

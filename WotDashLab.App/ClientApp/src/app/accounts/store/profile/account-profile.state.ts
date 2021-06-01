@@ -85,7 +85,7 @@ export interface IAccountStatistics {
   hits: number;
   battleAvgXp: number;
   wins: number;
-  loses: number;
+  losses: number;
   damageDealt: number;
   noDamageDirectHitsReceived: number;
   shots: number;
