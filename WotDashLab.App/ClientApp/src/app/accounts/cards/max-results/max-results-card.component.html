@@ -1,0 +1,44 @@
+<div class="card max-results-card-container w-100">
+  <div class="card-body">
+    <h5 class="card-title">Max Results</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Per battle</h6>
+    <div class="card-text">
+      <div class="d-table w-100">
+        <div class="d-table-row w-100">
+          <div class="d-table-cell w-50 text-secondary">Frags</div>
+          <div class="d-table-cell w-25">
+            <img *ngIf="maxFragsTank" [src]="maxFragsTank.images.smallIcon" [alt]="maxFragsTank.name" [title]="maxFragsTank.name">
+          </div>
+          <div class="d-table-cell ps-1 text-end w-25">{{profile.statistics?.all.maxFrags || 0 | number}}</div>
+        </div>
+      </div>
+      <div class="d-table w-100">
+        <div class="d-table-row w-100">
+          <div class="d-table-cell w-50 text-secondary">Damage</div>
+          <div class="d-table-cell w-25">
+            <img *ngIf="maxDamageTank" [src]="maxDamageTank.images.smallIcon" [alt]="maxDamageTank.name" [title]="maxDamageTank.name">
+          </div>
+          <div class="d-table-cell ps-1 text-end w-25">
+            {{profile.statistics?.all.maxDamage || 0 | number}}
+          </div>
+        </div>
+      </div>
+      <div class="d-table w-100">
+        <div class="d-table-row w-100">
+          <div class="d-table-cell w-50 text-secondary">XP</div>
+          <div class="d-table-cell w-50">
+            <img *ngIf="maxXpTank" [src]="maxXpTank.images.smallIcon" [alt]="maxXpTank.name" [title]="maxXpTank.name">
+          </div>
+          <div class="d-table-cell ps-1 text-end w-25">{{profile?.statistics?.all?.maxXp || 0 | number}}</div>
+        </div>
+      </div>
+      <div class="d-table w-100">
+        <div class="d-table-row w-100">
+          <div class="d-table-cell w-50 text-secondary">Trees cut</div>
+          <div class="d-table-cell w-50"></div>
+          <div class="d-table-cell ps-1 text-end w-25">{{profile?.statistics?.treesCut || 0 | number}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,21 @@
   | 'NEED_GET_ALL_REWARDS'
   | 'ALL_REWARDS_GOTTEN';
 
+export interface ITankShortInfo {
+  tankId: number;
+  name: string;
+  shortName: string;
+  description: string;
+  type: string;
+  tier: number;
+  nation: string;
+  images: {
+    smallIcon: string;
+    contourIcon: string;
+    bigIcon: string;
+  }
+}
+
 export interface IAccountProfileState {
   accountId: string;
   nickname: string;
@@ -18,6 +33,7 @@ export interface IAccountProfileState {
   clanId: number;
   logoutAt?: number;
   private?: IAccountPrivateData;
+  tankInfos: {[key: number]: ITankShortInfo };
   statistics: {
     treesCut: number;
     frags: { [key: number]: number };
@@ -91,4 +107,10 @@ export interface IAccountStatistics {
   shots: number;
   explosionHitsReceived: number;
   tankingFactor: number;
+  maxFrags: number;
+  maxDamage: number;
+  maxXp: number;
+  maxXpTankId?: number;
+  maxFragsTankId?: number;
+  maxDamageTankId?: number;
 }

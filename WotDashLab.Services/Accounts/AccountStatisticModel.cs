@@ -1,4 +1,4 @@
-﻿namespace WotDashLab.WebApi.Controllers.Accounts.Models
+﻿namespace WotDashLab.Services.Accounts
 {
     public class AccountStatisticModel
     {
@@ -35,6 +35,8 @@
         public decimal AvgDamageAssisted { get; set; }
 
         public int? MaxFragsTankId { get; set; }
+        
+        public int? MaxDamageTankId { get; set; }
 
         public decimal AvgDamageAssistedTrack { get; set; }
 
@@ -63,6 +65,8 @@
         public int NoDamageDirectHitsReceived { get; set; }
 
         public int MaxFrags { get; set; }
+
+        public int MaxXp { get; set; }
 
         public int Shots { get; set; }
 

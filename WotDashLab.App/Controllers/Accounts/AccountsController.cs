@@ -14,7 +14,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
     [WgExceptionFilter]
     public class AccountsController : ControllerBase
     {
-        private readonly ApiType _apiType = ApiType.Wot;
+        private const ApiType ApiType = Wot.Client.Contracts.ApiType.Wot;
         private readonly IWgRequestBuilder _requestBuilder;
         private readonly IWgClientBase _wgClient;
 
@@ -51,7 +51,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             var resourcePath ="account/list";
             var results = await _wgClient
-                .PostAsync<PlayerAccount[]>(_apiType, region, resourcePath, payload, token);
+                .PostAsync<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 
             return Ok(results.Data);
         }
@@ -66,7 +66,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             var resourcePath ="account/list";
             var search = await _wgClient
-                .PostAsync<PlayerAccount[]>(_apiType, region, resourcePath, payload, token);
+                .PostAsync<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 
             if (search.Data.Length <= 0)
             {

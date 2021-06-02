@@ -55,6 +55,9 @@ namespace WotDashLab.Wot.Client.Contracts.WorldOfTanks.Accounts
         [JsonPropertyName("max_frags_tank_id")]
         public int? MaxFragsTankId { get; set; }
 
+        [JsonPropertyName("max_damage_tank_id")]
+        public int? MaxDamageTankId { get; set; }
+
         [JsonPropertyName("avg_damage_assisted_track")]
         public decimal AvgDamageAssistedTrack { get; set; }
 
@@ -75,6 +78,9 @@ namespace WotDashLab.Wot.Client.Contracts.WorldOfTanks.Accounts
 
         [JsonPropertyName("max_damage")]
         public int MaxDamage { get; set; }
+
+        [JsonPropertyName("max_xp")]
+        public int MaxXp { get; set; }
 
         [JsonPropertyName("hits")]
         public int Hits { get; set; }

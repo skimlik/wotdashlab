@@ -8,4 +8,8 @@
       <Folder Include="Exceptions\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WotDashLab.Abstractions\WotDashLab.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>

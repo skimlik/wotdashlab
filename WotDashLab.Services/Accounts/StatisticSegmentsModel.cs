@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WotDashLab.WebApi.Controllers.Accounts.Models
+namespace WotDashLab.Services.Accounts
 {
     public class StatisticSegmentsModel
     {

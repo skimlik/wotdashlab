@@ -1,4 +1,4 @@
-FROM node AS base
+FROM node:14.15.4 AS base
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -23,7 +23,7 @@ EXPOSE 443
 EXPOSE 4200
 
 
-FROM nginx AS host
+FROM nginx:1.21.0 AS host
 WORKDIR /usr/src/app
 COPY --from=base /usr/src/app/dist/WotDashLab .
 COPY ./hosting/development/nginx.conf /etc/nginx/conf.d/default.conf

@@ -1,0 +1,21 @@
+.max-results-card-container {
+  height: 200px;
+}
+
+.d-table-cell {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  .d-flex-cell {
+    flex: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      flex: auto;
+    }
+  }
+}

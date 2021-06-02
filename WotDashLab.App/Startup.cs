@@ -1,19 +1,17 @@
-using System.Net.Http.Headers;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using WotDashLab.Abstractions;
 using WotDashLab.Services;
 using WotDashLab.WebApi.Infrastructure;
 using WotDashLab.WebApi.Infrastructure.Authentication;
 using WotDashLab.WebApi.Infrastructure.Diagnostics;
 using WotDashLab.WebApi.Infrastructure.Options;
-using WotDashLab.Wot.Client;
-using WotDashLab.Wot.Client.Contracts;
+using WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions;
 using WotDashLab.Wot.Client.Contracts.WorldOfTanks;
 
 namespace WotDashLab.WebApi
@@ -34,15 +32,13 @@ namespace WotDashLab.WebApi
         {
             services.AddControllersWithViews();
             services.AddHealthChecks();
+            services.AddMvcCore().AddFluentValidation(setup =>
+            {
+                setup.RegisterValidatorsFromAssemblyContaining(typeof(Startup));
+            });
 
             var wotOptionsSection = Configuration.GetSection("Wot");
             services.Configure<WotOptions>(wotOptionsSection);
-
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
 
             services.AddWotAuthentication();
             services.AddHttpContextAccessor();
@@ -51,18 +47,9 @@ namespace WotDashLab.WebApi
             services.AddCorsPolicy(Configuration, CorsPolicyName);
 
             services.AddSingleton<IEndpointResolver, RemoteEndpointResolver>();
-            services.AddHttpClient("wot", cfg =>
-            {
-                cfg.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            });
+            services.RegisterWgClient();
 
-            services.AddTransient<IWgRequestBuilder>(serviceProvider =>
-            {
-                var options = serviceProvider.GetRequiredService<IOptions<WotOptions>>();
-                var applicationId = options.Value.ApplicationId;
-                return new WgRequestBuilder(applicationId);
-            });
-            services.AddTransient<IWgClientBase, WgClientBase>();
+            services.RegisterAppServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,25 +80,9 @@ namespace WotDashLab.WebApi
             app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
-
             app.UseCors(CorsPolicyName);
-
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                // if (env.IsDevelopment())
-                // {
-                //     spa.UseAngularCliServer(npmScript: "start");
-                // }
-            });
         }
     }
 }

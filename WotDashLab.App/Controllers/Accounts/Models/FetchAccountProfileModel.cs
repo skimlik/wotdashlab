@@ -2,7 +2,7 @@
 
 namespace WotDashLab.WebApi.Controllers.Accounts.Models
 {
-    public class FetchAccountProfileRequest
+    public class FetchAccountProfileModel
     {
         [JsonPropertyName("extras")]
         public string[] Extras { get; set; }

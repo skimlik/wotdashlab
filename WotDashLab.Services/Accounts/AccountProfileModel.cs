@@ -1,4 +1,7 @@
-﻿namespace WotDashLab.WebApi.Controllers.Accounts.Models
+﻿using System.Collections.Generic;
+using WotDashLab.Services.Tanks;
+
+namespace WotDashLab.Services.Accounts
 {
     public class AccountProfileModel
     {
@@ -23,5 +26,7 @@
         public AccountPrivateInfoModel Private { get; set; }
 
         public StatisticSegmentsModel Statistics { get; set; }
+        
+        public IDictionary<int, TankInfoModel> TankInfos { get; set; }
     }
 }

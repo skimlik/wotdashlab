@@ -15,6 +15,7 @@ import { AccountProfileService } from './store/profile/account-profile.service';
 import { AppCommonModule } from '../common/app-common.module';
 import { AccountInfoCardComponent } from './cards/account-info/account-info-card.component';
 import {AccountBriefStatisticsCardComponent} from "./cards/account-brief-statistics/account-brief-stat-card.component";
+import {MaxResultsCardComponent} from "./cards/max-results/max-results-card.component";
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
     AccountProfileComponent,
     AccountInfoCardComponent,
     AccountBriefStatisticsCardComponent,
+    MaxResultsCardComponent
   ],
   providers: [AccountProfileService],
 })
