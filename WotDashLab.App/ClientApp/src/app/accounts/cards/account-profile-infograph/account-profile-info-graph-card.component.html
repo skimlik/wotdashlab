@@ -1,0 +1,31 @@
+<div class="account-profile-info-graph-container card w-100">
+  <div class="card-body">
+    <h5 class="card-title">Infographics</h5>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+
+    <div class="card-text">
+      <div class="row" *ngIf="profile">
+        <div class="col-lg-4 col-md-2 col-sm-1">
+          <app-account-win-rate-chart
+            [wins]="profile?.statistics?.all?.wins || 0"
+            [losses]="profile?.statistics?.all?.losses || 0"
+            [draws]="profile?.statistics?.all?.draws || 0"
+          ></app-account-win-rate-chart>
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1">
+          <app-account-survived-ratio
+            [total]="profile?.statistics?.all?.battles || 0"
+            [survived]="profile?.statistics?.all?.survivedBattles || 0"
+          ></app-account-survived-ratio>
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1">
+          <app-account-damage-ratio-chart
+            [damageDealt]="profile?.statistics?.all?.damageDealt || 0"
+            [damageReceived]="profile?.statistics?.all?.damageReceived || 0"
+          ></app-account-damage-ratio-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--app-account-damage-ratio-chart-->

@@ -1,7 +1,7 @@
 ﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IAccountsState } from '../store/accounts-state';
 import { select, Store } from '@ngrx/store';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject} from 'rxjs';
 import { activeAccountProfileSelector } from '../store/profile';
 import { IAccountProfileState } from '../store/profile/account-profile.state';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import { LocalStorageService } from '../../core/infrastructure/local-storage.ser
 @Component({
   selector: 'account-profile',
   templateUrl: 'account-profile.component.html',
-  styleUrls: ['account-profile.component.scss']
+  styleUrls: ['account-profile.component.scss'],
 })
 export class AccountProfileComponent implements OnInit, OnDestroy {
   private _region = this.storage.getRegion();
@@ -23,27 +23,29 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   selectedProfile$: Observable<IAccountProfileState> = this.store.pipe(
     select(activeAccountProfileSelector)
   );
+
   constructor(
     private store: Store<IAccountsState>,
     private route: ActivatedRoute,
     private storage: LocalStorageService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const accountId$ = this.route.params.pipe(map((p) => +p['accountId']));
 
     combineLatest([accountId$, this._language$])
-      .pipe(takeUntil(this._disposed$))
-      .subscribe((data) => {
-        const [accountId, language] = data;
-        this.store.dispatch(
-          fromProfileActions.selectAccountById({
-            accountId,
-            region: this._region,
-            language,
-          })
-        );
-      });
+    .pipe(takeUntil(this._disposed$))
+    .subscribe((data) => {
+      const [accountId, language] = data;
+      this.store.dispatch(
+        fromProfileActions.selectAccountById({
+          accountId,
+          region: this._region,
+          language,
+        })
+      );
+    });
   }
 
   ngOnDestroy(): void {

@@ -7,6 +7,7 @@ import { AppHeaderComponent } from './header/app-header.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UnixDatePipe } from './unix-date.pipe';
+import { PieChartService } from "./charts/pie/pie-chart.service";
 
 const toExport = [
   SearchBoxComponent,
@@ -19,7 +20,9 @@ const toExport = [
   imports: [CommonModule, FormsModule, RouterModule],
   exports: toExport,
   declarations: [toExport],
-  providers: [],
+  providers: [
+    PieChartService
+  ],
 })
 export class AppCommonModule {
 }
