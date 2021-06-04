@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UnixDatePipe } from './unix-date.pipe';
 import { PieChartService } from "./charts/pie/pie-chart.service";
+import { SecondsToTimePipe } from "./seconds-to-time.pipe";
 
 const toExport = [
   SearchBoxComponent,
   NavbarComponent,
   AppHeaderComponent,
   UnixDatePipe,
+  SecondsToTimePipe,
 ];
 
 @NgModule({

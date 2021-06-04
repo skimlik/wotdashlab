@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { applicationTitleSelector } from './core/store/layout';
 import {
   currentAppDescriptionSelector,
@@ -10,10 +10,11 @@ import { ICoreState } from './core/store/core.state';
 import { LocalStorageService } from './core/infrastructure/local-storage.service';
 import { DefaultRegion } from './core/constants/default-settings';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, Subject } from 'rxjs';
-import { AccountIdName, ExpiresHeaderName, TokenHeaderName, UsernameHeaderName } from './core/infrastructure/http';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { IAuthInfo } from './core/infrastructure/authentication/auth-info';
-import { ISearchResultItem } from './common/search-box/search-result-item';
+import { activeAccountProfileSelector } from "./accounts/store/profile";
+import { IAccountProfileState } from "./accounts/store/profile/account-profile.state";
+import { IAccountsState } from "./accounts/store/accounts-state";
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,10 @@
 ﻿<div class="account-profile-container pt-2 full-height" *ngIf="selectedProfile$ | async as profile">
   <div class="row">
+    <div class="col-xl-12">
+      <app-account-attributes [profile]="profile"></app-account-attributes>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xl-4 col-md-6 col-sm-12">
       <app-account-info-card [profile]="profile"></app-account-info-card>
     </div>

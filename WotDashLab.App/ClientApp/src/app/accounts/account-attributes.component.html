@@ -1,0 +1,26 @@
+<div class="account-attributes-container" *ngIf="profile">
+  <div class="ban" *ngIf="profile.private?.banTime">
+    <div class="alert alert-warning" role="alert">
+      <strong>Banned!</strong>
+      <p>
+        {{profile.private.banInfo}}
+      </p>
+      <p>
+        Valid untill: {{ 1622385466 | unixDate | date:'short' }}
+      </p>
+    </div>
+  </div>
+  <span *ngIf="profile.private" class="text-muted text-sm">
+    Gold {{profile.private.gold | number}},
+    Bonds {{profile.private.bonds | number}},
+    Credits {{profile.private.credits | number}},
+    XP {{profile.private.freeXp | number}}
+  </span>
+  <span class="pull-right text-muted">
+    Battle lifetime: {{ profile.private.battleLifeTime | secondsToTime }}
+    <br *ngIf="isPremium">
+    <span *ngIf="isPremium">
+      Premium expires: {{profile.private.premiumExpiresAt | unixDate | date:'short'}}
+    </span>
+  </span>
+</div>

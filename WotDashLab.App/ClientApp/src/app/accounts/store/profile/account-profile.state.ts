@@ -60,7 +60,7 @@ export interface IAccountRestrictions {
 export interface IAccountPrivateData {
   banInfo: string;
   banTime: string;
-  battleLifeTime: string;
+  battleLifeTime?: number;
   bonds: number;
   credits: number;
   gold: number;
