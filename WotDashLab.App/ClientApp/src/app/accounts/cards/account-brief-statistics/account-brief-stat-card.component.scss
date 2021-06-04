@@ -1,3 +1,18 @@
-﻿.profile-brief-stat-card {
+﻿@import "~src/assets/variables";
+
+.profile-brief-stat-card {
   height: 200px;
+}
+
+.damage-ratio-cell {
+  white-space: nowrap;
+
+  .fa-arrow-up {
+    color: $green-color;
+    margin-right: 4px;
+  }
+  .fa-arrow-down {
+    color: $red-color;
+    margin-right: 4px;
+  }
 }

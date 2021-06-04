@@ -7,12 +7,13 @@ import { IPieChartOptions } from "../../../common/charts/pie/pie-chart-options";
 @Component({
   selector: 'app-account-damage-ratio-chart',
   templateUrl: 'account-damage-ratio-chart.component.html',
-  styleUrls: ['account-damage-ratio-chart.component.scss'],
+  styleUrls: ['../common-chart-styles.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AccountDamageRatioChartComponent implements OnInit {
-  private _size = 200;
+  private _size = 180;
+  private _innerRadius = 15;
 
   @Input() damageReceived: number;
   @Input() damageDealt: number;
@@ -23,7 +24,7 @@ export class AccountDamageRatioChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    const host = this.elementRef.nativeElement.querySelector('.account-damage-ratio-chart-container svg');
+    const host = this.elementRef.nativeElement.querySelector('.parent-container svg');
     if (host) {
       const data: PieChartData[] = [
         new PieChartData('Received', this.damageReceived),
@@ -34,9 +35,17 @@ export class AccountDamageRatioChartComponent implements OnInit {
         width: this._size,
         height: this._size,
         colors: this._colors,
-        innerRadius: 35
+        innerRadius: this._innerRadius
       };
       this.pieChart.create(host, options, data);
     }
+  }
+
+  get total(): number {
+    return this.damageReceived + this.damageDealt;
+  }
+
+  get ratio(): number {
+    return !this.total ? 0 : this.damageDealt / this.total;
   }
 }

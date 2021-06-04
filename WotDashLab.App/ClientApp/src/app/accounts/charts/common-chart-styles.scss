@@ -1,0 +1,17 @@
+@import "~src/assets/variables";
+
+.parent-container {
+  padding: 15px;
+
+  .label {
+    white-space: nowrap;
+  }
+
+  .good {
+    color: $green-color;
+  }
+
+  .bad {
+    color: $red-color;
+  }
+}

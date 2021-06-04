@@ -1,8 +1,13 @@
-<div class="account-damage-ratio-chart-container">
+<div class="account-damage-ratio-chart-container parent-container">
   <div>
-    <span class="text-primary">Damage ratio</span>
+    <span class="text-primary label">
+      Damage ratio (
+      <span [ngClass]="{ 'good': ratio >= 0.5, 'bad': ratio < 0.5 }">
+        {{ratio | percent:'1.2-4'}}
+      </span>)
+    </span>
   </div>
   <div>
-    <svg width="200" height="200" viewBox="0,0,200,200"></svg>
+    <svg></svg>
   </div>
 </div>

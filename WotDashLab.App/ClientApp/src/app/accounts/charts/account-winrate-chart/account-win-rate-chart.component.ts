@@ -7,11 +7,12 @@ import { GreenColor, LightGreenColor, RedColor } from "../../../common/constants
 @Component({
   selector: 'app-account-win-rate-chart',
   templateUrl: 'account-win-rate-chart.component.html',
-  styleUrls: ['account-win-rate-chart.component.scss']
+  styleUrls: ['../common-chart-styles.scss']
 })
 
 export class AccountWinRateChartComponent implements AfterViewInit {
-  private _size = 200;
+  private _size = 180;
+  private _innerRadius = 15;
 
   @Input() wins: number;
   @Input() draws: number;
@@ -23,7 +24,7 @@ export class AccountWinRateChartComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const host = this.elementRef.nativeElement.querySelector('.account-win-rate-chart-container svg');
+    const host = this.elementRef.nativeElement.querySelector('.parent-container svg');
     if (host) {
       const data: PieChartData[] = [
         new PieChartData('Wins', this.wins),
@@ -35,11 +36,19 @@ export class AccountWinRateChartComponent implements AfterViewInit {
         width: this.size,
         height: this.size,
         colors: this.colors,
-        innerRadius: 35
+        innerRadius: this._innerRadius
       };
 
       this.pieChart.create(host, options, data);
     }
+  }
+
+  get totalBattles(): number {
+    return this.wins + this.draws + this.losses;
+  }
+
+  get winRate(): number {
+    return !this.totalBattles ? 0 : this.wins / this.totalBattles;
   }
 
   get size(): number {

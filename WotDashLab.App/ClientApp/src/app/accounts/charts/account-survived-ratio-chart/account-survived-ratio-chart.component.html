@@ -1,8 +1,11 @@
-<div class="account-survived-ratio-chart-container">
+<div class="account-survived-ratio-chart-container parent-container">
   <div>
-    <span class="text-primary">Survived ratio</span>
+    <span class="text-primary label">Survived ratio (
+      <span [ngClass]="{ 'good': ratio >= 0.2, 'bad': ratio < 0.2 }">
+        {{ratio | percent:'1.2-4'}}
+      </span>)</span>
   </div>
   <div>
-    <svg width="200" height="200" viewBox="0,0,200,200"></svg>
+    <svg></svg>
   </div>
 </div>

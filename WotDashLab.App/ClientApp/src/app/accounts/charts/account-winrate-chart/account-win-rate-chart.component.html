@@ -1,8 +1,10 @@
-<div class="account-win-rate-chart-container">
+<div class="account-win-rate-chart-container parent-container">
   <div>
-    <span class="text-primary">Win Rate</span>
+    <span class="text-primary label">Win Rate (
+      <span [ngClass]="{'good': winRate >=0.5, 'bad': winRate < 0.5}">{{winRate | percent:'1.2-4'}}</span>
+    )</span>
   </div>
   <div>
-    <svg width="200" height="200" viewBox="0,0,200,200"></svg>
+    <svg></svg>
   </div>
 </div>

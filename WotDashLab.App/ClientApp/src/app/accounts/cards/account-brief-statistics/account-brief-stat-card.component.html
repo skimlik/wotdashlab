@@ -9,7 +9,7 @@
           <div class="d-table-cell ps-1 text-end w-50">{{battles | number}}</div>
         </div>
         <div class="d-table-row w-100">
-          <div class="d-table-cell w-50 text-secondary">Survived ({{survivedRatio | percent:'1.2-2'}})</div>
+          <div class="d-table-cell w-50 text-secondary">Survived</div>
           <div class="d-table-cell ps-1 text-end w-50">{{survived | number}}</div>
         </div>
         <div class="d-table-row w-100">
@@ -17,9 +17,9 @@
           <div class="d-table-cell ps-1 text-end w-50">{{profile?.statistics?.all?.battleAvgXp || 0 | number}}</div>
         </div>
         <div class="d-table-row w-100">
-          <div class="d-table-cell w-50 text-secondary">Damage ratio ({{damageRatio | percent:'1.2-2'}})</div>
-          <div class="d-table-cell ps-1 text-end w-50">
-            {{damageDealt | number}} / {{damageReceived | number}}
+          <div class="d-table-cell w-50 text-secondary">Damage ratio</div>
+          <div class="d-table-cell ps-1 text-end w-50 damage-ratio-cell">
+            <i class="fa fa-arrow-up"></i>{{damageDealt | number}} / <i class="fa fa-arrow-down"></i>{{damageReceived | number}}
           </div>
         </div>
         <div class="d-table-row w-100">

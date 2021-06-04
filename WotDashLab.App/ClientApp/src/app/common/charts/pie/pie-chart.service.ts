@@ -23,6 +23,9 @@ export class PieChartService {
       .outerRadius(Math.min((options?.width || 120), (options?.height || 120)) / 2 -1);
 
     const svg = d3.select(host);
+
+    svg.attr('height', height).attr('width', 'width').attr('viewBox', `0,0,${width},${height}`);
+
     svg.append('g')
         .attr('stroke', 'white')
         .attr('transform', `translate(${width / 2}, ${height / 2})`)

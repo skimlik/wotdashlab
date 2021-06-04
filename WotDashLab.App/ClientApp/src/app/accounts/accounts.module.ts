@@ -21,6 +21,7 @@ import { PieChartService } from "../common/charts/pie/pie-chart.service";
 import { AccountWinRateChartComponent } from "./charts/account-winrate-chart/account-win-rate-chart.component";
 import { AccountSurvivedRatioComponent } from "./charts/account-survived-ratio-chart/account-survived-ratio-chart.component";
 import { AccountDamageRatioChartComponent } from "./charts/account-damage-ratio-chart/account-damage-ratio-chart.component";
+import { AccountFragsRatioChartComponent } from "./charts/frags-ratio-chart/account-frags-ratio-chart.component";
 
 const routes: Routes = [
   {
@@ -62,7 +63,8 @@ const routes: Routes = [
     AccountProfileInfoGraphCardComponent,
     AccountWinRateChartComponent,
     AccountSurvivedRatioComponent,
-    AccountDamageRatioChartComponent
+    AccountDamageRatioChartComponent,
+    AccountFragsRatioChartComponent
   ],
   providers: [
     AccountProfileService,
