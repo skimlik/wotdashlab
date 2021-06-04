@@ -24,7 +24,7 @@ export class PieChartService {
 
     const svg = d3.select(host);
 
-    svg.attr('height', height).attr('width', 'width').attr('viewBox', `0,0,${width},${height}`);
+    svg.attr('height', height).attr('width', width).attr('viewBox', `0,0,${width},${height}`);
 
     svg.append('g')
         .attr('stroke', 'white')
