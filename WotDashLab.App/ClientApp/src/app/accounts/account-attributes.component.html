@@ -6,7 +6,7 @@
         {{profile.private.banInfo}}
       </p>
       <p>
-        Valid untill: {{ 1622385466 | unixDate | date:'short' }}
+        Valid untill: {{ profile.private.banTime | unixDate | date:'short' }}
       </p>
     </div>
   </div>
@@ -16,11 +16,11 @@
     Credits {{profile.private.credits | number}},
     XP {{profile.private.freeXp | number}}
   </span>
-  <span class="pull-right text-muted">
-    Battle lifetime: {{ profile.private.battleLifeTime | secondsToTime }}
+  <span *ngIf="profile.private" class="pull-right text-muted">
+    Battle lifetime: {{ profile.private?.battleLifeTime | secondsToTime }}
     <br *ngIf="isPremium">
     <span *ngIf="isPremium">
-      Premium expires: {{profile.private.premiumExpiresAt | unixDate | date:'short'}}
+      Premium expires: {{profile.private?.premiumExpiresAt | unixDate | date:'short'}}
     </span>
   </span>
 </div>
