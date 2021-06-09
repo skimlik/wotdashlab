@@ -36,7 +36,8 @@ export class AccountWinRateChartComponent implements AfterViewInit {
         width: this.size,
         height: this.size,
         colors: this.colors,
-        innerRadius: this._innerRadius
+        innerRadius: this._innerRadius,
+        classes: ['green', 'red', 'neutral']
       };
 
       this.pieChart.create(host, options, data);

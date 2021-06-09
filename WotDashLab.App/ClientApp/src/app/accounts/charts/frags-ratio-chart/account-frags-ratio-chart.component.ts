@@ -35,6 +35,7 @@ export class AccountFragsRatioChartComponent implements OnInit {
         height: this.size,
         colors: [LightGreenColor, RedColor],
         innerRadius: this._innerRadius,
+        classes: ['green', 'red']
       }
 
       this.pieChart.create(host, options, data);

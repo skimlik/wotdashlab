@@ -2,5 +2,6 @@ export interface IPieChartOptions {
   width: number;
   height: number;
   innerRadius?: number;
-  colors: string[];
+  colors?: string[];
+  classes?: string[];
 }

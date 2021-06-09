@@ -14,21 +14,12 @@
   .chart {
     flex: 1;
     margin: 10px 10px;
-
-    &:last-child {
-      padding-right: 0;
-      margin-right: 0;
-    }
   }
 }
 
 .card {
   padding: 0;
   margin: 0;
-
-  &:last-child {
-    margin-right: 0;
-  }
 
   .card-body {
     padding: 0;
@@ -37,24 +28,26 @@
 
 @media (max-width: $smallScreen) {
   .card {
-    min-width: 500px;
+    min-width: 440px;
   }
 }
 
 @media (min-width: $mediumScreen) {
-  .card {
-    min-width: 400px;
+  .container {
+    justify-content: space-between;
   }
-}
 
-@media (min-width: $extraLargeScreen) {
   .card {
     min-width: 260px;
-    max-width: 290px;
+    max-width: 260px;
   }
 }
 
 @media (min-width: $largeScreen) {
+  .container {
+    justify-content: space-between;
+  }
+
   .card {
     min-width: 200px;
     max-width: 220px;

@@ -35,7 +35,8 @@ export class AccountDamageRatioChartComponent implements OnInit {
         width: this._size,
         height: this._size,
         colors: this._colors,
-        innerRadius: this._innerRadius
+        innerRadius: this._innerRadius,
+        classes: ['red', 'green']
       };
       this.pieChart.create(host, options, data);
     }
