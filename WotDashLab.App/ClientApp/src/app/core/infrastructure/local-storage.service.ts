@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { DefaultRegion } from '../constants/default-settings';
 import { IAuthInfo } from './authentication/auth-info';
+import { SupportedRegions } from "../../common/constants/string-constraints";
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
@@ -30,7 +31,7 @@ export class LocalStorageService {
     return null;
   }
 
-  getRegion(): string {
+  getRegion(): SupportedRegions {
     const reg = this.getValue('region');
     if (reg) {
       const parsed = JSON.parse(reg);

@@ -4,9 +4,13 @@ import { map, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, of, Subject } from 'rxjs';
 import { ColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { CollectionUtils } from '../../core/services/collection.utils';
-import { AccountSearchService } from './account-search.service';
-import { IAccount } from '../account';
+import { IWgnAccountSearchResult, IWotAccount } from '../account';
 import { GetAccountGridCellRenderers } from './account-grid-actions-cell.renderers';
+import { WgnAccountSearchService } from "./wgn-account-search.service";
+import { IApplicationSettingsState } from "../../core/store/core.state";
+import { Store } from "@ngrx/store";
+import { DatePipe } from "@angular/common";
+import { UnixDatePipe } from "../../common/unix-date.pipe";
 
 @Component({
   selector: 'account-search',
@@ -19,7 +23,7 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
   private _gridColumnApi: ColumnApi;
 
   searchText = '';
-  rowData$ = new BehaviorSubject<IAccount[]>([]);
+  rowData$ = new BehaviorSubject<IWgnAccountSearchResult[]>([]);
   context: { componentParent: AccountSearchComponent };
   components = {
     actionsCellRenderer: GetAccountGridCellRenderers(),
@@ -42,12 +46,27 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
       minWidth: 180,
     },
     {
+      colId: 'created_at',
+      field: 'created_at',
+      headerName: 'Created At',
+      valueFormatter: (params) => (this.datePipe.transform(this.unixDate.transform(params.value)))
+    },
+    {
       colId: 'viewAction',
       headerName: '',
       width: 80,
       suppressAutoSize: true,
+      sortable: false,
       cellRenderer: 'actionsCellRenderer',
       cellClass: 'link-primary',
+    },
+    {
+      colId: 'games',
+      field: 'games',
+      headerName: 'Games',
+      minWidth: 100,
+      tooltipValueGetter: (params) => AccountSearchComponent.resolveGameName(params.value),
+      valueFormatter: (params) => AccountSearchComponent.resolveGameName(params.value)
     }
   ];
 
@@ -55,12 +74,16 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
     flex: 1,
     minWidth: 100,
     sortable: true,
+    resizable: true,
+    sortingOrder: ['asc', 'desc']
   };
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private searchService: AccountSearchService
+    private searchService: WgnAccountSearchService,
+    private datePipe: DatePipe,
+    private unixDate: UnixDatePipe,
   ) {
     this.context = { componentParent: this };
   }
@@ -88,10 +111,8 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
   search() {
     const search$ = this.searchText
       ? this.searchService.searchAll({
-        region: 'ru',
-        text: this.searchText,
-        match: this.searchText.indexOf(',') > -1 ? 'exact' : 'startswith',
-        limit: 0,
+        search: this.searchText,
+        type: this.searchText.indexOf(',') > -1 ? 'exact' : 'startswith'
       })
       : of([]);
 
@@ -102,5 +123,27 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
 
   openProfile(accountId: number): void {
     this.router.navigate(['accounts', accountId]);
+  }
+
+  private static resolveGameName(value: string[]) {
+    const values = value?.map(p => {
+      switch (p) {
+        case 'wot':
+          return 'World of Tanks';
+        case 'wotb':
+          return 'World of Tanks Blitz';
+        case 'wowp':
+          return 'World of Warplanes';
+        case 'wows':
+          return 'World of Warpships';
+        case 'wgcb':
+          return 'Console';
+        case 'wgn':
+          return 'WARGAMING.NET';
+        default:
+          return p;
+      }
+    })
+    return values?.join(', ')
   }
 }

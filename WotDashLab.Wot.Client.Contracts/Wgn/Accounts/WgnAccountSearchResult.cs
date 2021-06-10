@@ -8,7 +8,7 @@ namespace WotDashLab.Wot.Client.Contracts.Wgn.Accounts
         public string[] Games { get; set; }
         
         [JsonPropertyName("created_at")]
-        protected int CreatedAt { get; set; }
+        public int? CreatedAt { get; set; }
 
         [JsonPropertyName("nickname")]
         public string Nickname { get; set; }

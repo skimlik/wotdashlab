@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { AccountsComponent } from './accounts.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountSearchComponent } from './search/account-search.component';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { AccountSurvivedRatioComponent } from "./charts/account-survived-ratio-c
 import { AccountDamageRatioChartComponent } from "./charts/account-damage-ratio-chart/account-damage-ratio-chart.component";
 import { AccountFragsRatioChartComponent } from "./charts/frags-ratio-chart/account-frags-ratio-chart.component";
 import { AccountAttributesComponent } from "./account-attributes.component";
+import { UnixDatePipe } from "../common/unix-date.pipe";
 
 const routes: Routes = [
   {
@@ -66,11 +67,13 @@ const routes: Routes = [
     AccountWinRateChartComponent,
     AccountSurvivedRatioComponent,
     AccountDamageRatioChartComponent,
-    AccountFragsRatioChartComponent
+    AccountFragsRatioChartComponent,
   ],
   providers: [
     AccountProfileService,
-    PieChartService
+    PieChartService,
+    DatePipe,
+    UnixDatePipe,
   ],
 })
 export class AccountsModule {

@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, Output, EventEmitter, ViewChild } from '@angular/core';
-import { AccountSearchService } from '../../accounts/search/account-search.service';
+import { WotAccountSearchService } from '../../accounts/search/wot-account-search.service';
 import { ISearchServiceInterface } from '../search-box/search-service-interface';
 import { ISearchResultItem } from '../search-box/search-result-item';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { SearchBoxComponent } from '../search-box/search-box.component';
+import { SupportedRegions } from "../constants/string-constraints";
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ import { SearchBoxComponent } from '../search-box/search-box.component';
 export class NavbarComponent implements OnDestroy{
   private _searchRecordsLimit = 10;
   private _disposed = new Subject<void>();
-  private _region: 'ru' | 'na' | 'eu' | 'asia' = 'ru';
+  private _region: SupportedRegions = 'ru';
 
   @ViewChild(SearchBoxComponent, { static: false }) searchBox: SearchBoxComponent;
 
@@ -25,19 +26,19 @@ export class NavbarComponent implements OnDestroy{
   @Input() brand = 'World of Tanks';
   @Input() currentApiName = 'Wot';
   @Input()
-  set region(value: 'ru' | 'na' | 'eu' | 'asia') {
+  set region(value: SupportedRegions) {
     if (this.searchBox) {
       this.searchBox.clear();
     }
     this._region = value;
   }
-  get region(): 'ru' | 'na' | 'eu' | 'asia' {
+  get region(): SupportedRegions {
     return this._region;
   }
 
   accountSearch: ISearchServiceInterface;
 
-  constructor(private searchService: AccountSearchService, private router: Router) {
+  constructor(private searchService: WotAccountSearchService, private router: Router) {
     this.accountSearch = {
       resolve: (text) => searchService.searchAll({
         match: text.indexOf(',') > -1 ? 'exact' : 'startswith',
