@@ -1,4 +1,19 @@
+@import "~src/assets/variables";
+
 .account-attributes-container {
   padding: 8px 0 8px 8px;
   margin-right: 0;
+
+  .attributes {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: 672px) {
+    .attributes {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
 }
