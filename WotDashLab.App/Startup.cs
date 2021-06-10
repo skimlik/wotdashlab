@@ -12,6 +12,7 @@ using WotDashLab.WebApi.Infrastructure.Authentication;
 using WotDashLab.WebApi.Infrastructure.Diagnostics;
 using WotDashLab.WebApi.Infrastructure.Options;
 using WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions;
+using WotDashLab.Wot.Client.Contracts;
 using WotDashLab.Wot.Client.Contracts.WorldOfTanks;
 
 namespace WotDashLab.WebApi

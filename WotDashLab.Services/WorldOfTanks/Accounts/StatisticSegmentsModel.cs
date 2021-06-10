@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WotDashLab.Services.Accounts
+namespace WotDashLab.Services.WorldOfTanks.Accounts
 {
     public class StatisticSegmentsModel
     {

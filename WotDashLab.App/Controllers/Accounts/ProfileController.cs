@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WotDashLab.Services.Accounts;
+using WotDashLab.Services.WorldOfTanks.Accounts;
 using WotDashLab.WebApi.Controllers.Accounts.Models;
 using WotDashLab.WebApi.Infrastructure;
 

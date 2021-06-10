@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WotDashLab.Services.Tanks;
+using WotDashLab.Services.WorldOfTanks.Tanks;
 
-namespace WotDashLab.Services.Accounts
+namespace WotDashLab.Services.WorldOfTanks.Accounts
 {
     public class AccountProfileModel
     {

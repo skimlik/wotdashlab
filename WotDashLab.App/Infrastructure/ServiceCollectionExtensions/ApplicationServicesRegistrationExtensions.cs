@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using WotDashLab.Services.Accounts;
-using WotDashLab.Services.Tanks;
+using WotDashLab.Services.Wgn;
+using WotDashLab.Services.WorldOfTanks.Accounts;
+using WotDashLab.Services.WorldOfTanks.Tanks;
 
 namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
 {
@@ -8,8 +9,12 @@ namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
     {
         public static IServiceCollection RegisterAppServices(this IServiceCollection services)
         {
+            // wot
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<ITanksService, TanksService>();
+            
+            // wgn
+            services.AddScoped<IWgnAccountsService, WgnAccountsService>();
             return services;
         }
     }

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WotDashLab.Services;
 using WotDashLab.WebApi.Controllers.Accounts.Models;
 using WotDashLab.WebApi.Infrastructure;
 using WotDashLab.Wot.Client.Contracts;
@@ -9,16 +10,17 @@ using WotDashLab.Wot.Client.Contracts.WorldOfTanks.Accounts;
 
 namespace WotDashLab.WebApi.Controllers.Accounts
 {
-    [Route("api/{region}/[controller]")]
+    [Route("api/{region}/accounts")]
+    [Route("api/{region}/wot/accounts")]
     [ApiController]
     [WgExceptionFilter]
-    public class AccountsController : ControllerBase
+    public class WotAccountsController : ControllerBase
     {
         private const ApiType ApiType = Wot.Client.Contracts.ApiType.Wot;
         private readonly IWgRequestBuilder _requestBuilder;
         private readonly IWgClientBase _wgClient;
 
-        public AccountsController(
+        public WotAccountsController(
             IWgRequestBuilder requestBuilder,
             IWgClientBase wgClient)
         {

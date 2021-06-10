@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WotDashLab.Services.Tanks
+namespace WotDashLab.Services.WorldOfTanks.Tanks
 {
     public interface ITanksService
     {

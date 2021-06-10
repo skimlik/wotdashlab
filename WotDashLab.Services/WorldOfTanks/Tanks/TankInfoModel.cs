@@ -1,4 +1,4 @@
-namespace WotDashLab.Services.Tanks
+namespace WotDashLab.Services.WorldOfTanks.Tanks
 {
     public class TankImagesModel
     {

@@ -5,11 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Mapster;
 using WotDashLab.Abstractions;
-using WotDashLab.Services.Tanks;
+using WotDashLab.Services.WorldOfTanks.Tanks;
 using WotDashLab.Wot.Client.Contracts;
 using WotDashLab.Wot.Client.Contracts.WorldOfTanks.Accounts;
 
-namespace WotDashLab.Services.Accounts
+namespace WotDashLab.Services.WorldOfTanks.Accounts
 {
     internal class ProfileService : IProfileService
     {

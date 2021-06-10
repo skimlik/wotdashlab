@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WotDashLab.Services.Accounts
+namespace WotDashLab.Services.WorldOfTanks.Accounts
 {
     public interface IProfileService
     {

@@ -1,4 +1,4 @@
-﻿namespace WotDashLab.Wot.Client.Contracts.WorldOfTanks
+﻿namespace WotDashLab.Wot.Client.Contracts
 {
     public interface IEndpointResolver
     {

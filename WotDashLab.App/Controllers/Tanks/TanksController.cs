@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using WotDashLab.Services.Tanks;
+using WotDashLab.Services.WorldOfTanks.Tanks;
 using WotDashLab.WebApi.Controllers.Tanks.Models;
 using WotDashLab.WebApi.Infrastructure;
 

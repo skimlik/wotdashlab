@@ -1,4 +1,4 @@
-﻿namespace WotDashLab.WebApi.Controllers.Accounts.Models
+﻿namespace WotDashLab.Services
 {
     public static class AccountSearchTypes
     {

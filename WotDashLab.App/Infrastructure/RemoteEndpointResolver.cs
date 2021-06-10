@@ -21,7 +21,7 @@ namespace WotDashLab.WebApi.Infrastructure
 
         public string Resolve(ApiType apiType, string region)
         {
-            var apiName = nameof(ApiType.Wot);
+            var apiName = Enum.GetName(apiType);
             if (_wotOptions.Api.TryGetValue(apiName, out var apiDescription))
             {
                 var regionName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(region);

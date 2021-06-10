@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WotDashLab.Services.Tanks
+namespace WotDashLab.Services.WorldOfTanks.Tanks
 {
     public class TanksRequest
     {

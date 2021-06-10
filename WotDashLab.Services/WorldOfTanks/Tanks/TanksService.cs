@@ -8,7 +8,7 @@ using WotDashLab.Abstractions;
 using WotDashLab.Wot.Client.Contracts;
 using WotDashLab.Wot.Client.Contracts.WorldOfTanks.Tanks;
 
-namespace WotDashLab.Services.Tanks
+namespace WotDashLab.Services.WorldOfTanks.Tanks
 {
     internal class TanksService : ITanksService
     {

@@ -5,5 +5,7 @@ namespace WotDashLab.Wot.Client.Contracts
         public const string Extras = "extras";
 
         public const string AccountId = "account_id";
+
+        public const string Limit = "limit";
     }
 }

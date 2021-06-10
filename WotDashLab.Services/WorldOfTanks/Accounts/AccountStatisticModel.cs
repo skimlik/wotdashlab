@@ -1,4 +1,4 @@
-﻿namespace WotDashLab.Services.Accounts
+﻿namespace WotDashLab.Services.WorldOfTanks.Accounts
 {
     public class AccountStatisticModel
     {
