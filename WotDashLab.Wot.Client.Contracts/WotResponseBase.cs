@@ -15,5 +15,7 @@ namespace WotDashLab.Wot.Client.Contracts
 
         [JsonPropertyName("meta")]
         public WotResponseMetadata Metadata { get; set; }
+
+        public bool IsOk => Status == "ok";
     }
 }

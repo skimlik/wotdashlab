@@ -52,7 +52,7 @@ namespace WotDashLab.Services.Wgn
             const string url = "account/list";
             var result = await _wgClient.PostAsync<ICollection<WgnAccountSearchResult>>(ApiType, model.Region, url, payload, token);
 
-            if (result.Status == "ok")
+            if (result.IsOk)
             {
                 return result.Data;
             }

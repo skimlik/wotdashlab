@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using WotDashLab.Wot.Client.Contracts;
 using WotDashLab.Wot.Client.Contracts.Exceptions;
-using WotDashLab.Wot.Client.Contracts.WorldOfTanks;
 
 namespace WotDashLab.Wot.Client
 {
@@ -12,12 +13,25 @@ namespace WotDashLab.Wot.Client
     {
         private readonly IEndpointResolver _endpointResolver;
         private readonly HttpClient _client;
+        private readonly ILogger<WgClientBase> _logger;
 
         public WgClientBase(
+            ILoggerFactory loggerFactory,
             IHttpClientFactory httpClientFactory,
             IEndpointResolver endpointResolver)
         {
-            _endpointResolver = endpointResolver;
+            if (loggerFactory == null)
+            {
+                throw new ArgumentNullException(nameof(loggerFactory));
+            }
+
+            if (httpClientFactory == null)
+            {
+                throw new ArgumentNullException(nameof(httpClientFactory));
+            }
+
+            _logger = loggerFactory.CreateLogger<WgClientBase>();
+            _endpointResolver = endpointResolver ?? throw new ArgumentNullException(nameof(endpointResolver));
             _client = httpClientFactory.CreateClient();
         }
 
@@ -35,12 +49,21 @@ namespace WotDashLab.Wot.Client
             HttpResponseMessage postAsync = await _client.PostAsync(url, content, token);
             postAsync.EnsureSuccessStatusCode();
 
-            var result = await postAsync.ReadAsAsync<WotResponseBase<T>>(token);
-            if (result is not null && result.Status.Equals("error"))
+            try
             {
-                throw new WgErrorException(result.Error.Code, result.Error.Message, result.Error.Field, result.Error.Value);
+                var result = await postAsync.ReadAsAsync<WotResponseBase<T>>(token);
+                
+                if (result is not null && result.Status.Equals("error"))
+                {
+                    throw new WgErrorException(result.Error.Code, result.Error.Message, result.Error.Field, result.Error.Value);
+                }
+                return result;
             }
-            return result;
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, "Error sending request to Wargaming api.");
+                throw;
+            }
         }
 
         private string CombineUrl(string baseUrl, string path)
