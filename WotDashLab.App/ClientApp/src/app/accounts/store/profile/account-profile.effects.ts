@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { act, Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AccountProfileService } from './account-profile.service';
 import * as fromActions from './account-profile.actions';
 import { filter, map, mergeMap } from 'rxjs/operators';

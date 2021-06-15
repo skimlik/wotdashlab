@@ -1,0 +1,30 @@
+@import "~src/assets/variables";
+
+h6 {
+  margin-top: 10px;
+}
+
+.server-info,
+.header {
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  margin-right: 20px;
+}
+
+.server-info {
+  border-bottom: 1px solid $light-green-color;
+}
+
+.header {
+  font-weight: bolder;
+}
+
+@media (min-width: $smallScreen) {
+  .reports {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}

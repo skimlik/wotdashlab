@@ -7,6 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\WotDashLab.Abstractions\WotDashLab.Abstractions.csproj" />
       <ProjectReference Include="..\WotDashLab.Wot.Client.Contracts\WotDashLab.Wot.Client.Contracts.csproj" />
+      <ProjectReference Include="..\WotDashLab.Wot.Client\WotDashLab.Wot.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>

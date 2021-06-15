@@ -1,11 +1,43 @@
-﻿<div class="servers-container">
+﻿<div class="servers-container container">
   <div class="header mb-1">
     <h3>
       WGN Servers
       <small class="text-muted">Healthy status</small>
     </h3>
   </div>
-  <div class="body">
-    <h6 *ngFor="let t of apiTypes$ | async">{{t.name}}</h6>
+  <div class="reports">
+    <div class="scope">
+      <h6>World Of Tanks</h6>
+      <div class="header">
+        <div class="server-name">Server Name</div>
+        <div class="players-online">Players Online</div>
+      </div>
+      <div class="server-info" *ngFor="let srv of servers$('wot') | async">
+        <div class="server-name">{{srv.server}}</div>
+        <div class="players-online">{{srv.players_online}}</div>
+      </div>
+    </div>
+    <div class="scope">
+      <h6>World Of Tanks (Blitz)</h6>
+      <div class="header">
+        <div class="server-name">Server Name</div>
+        <div class="players-online">Players Online</div>
+      </div>
+      <div class="server-info" *ngFor="let srv of servers$('wotb') | async">
+        <div class="server-name">{{srv.server}}</div>
+        <div class="players-online">{{srv.players_online}}</div>
+      </div>
+    </div>
+    <div class="scope">
+      <h6>World of Warships</h6>
+      <div class="header">
+        <div class="server-name">Server Name</div>
+        <div class="players-online">Players Online</div>
+      </div>
+      <div class="server-info" *ngFor="let srv of servers$('wows') | async">
+        <div class="server-name">{{srv.server}}</div>
+        <div class="players-online">{{srv.players_online}}</div>
+      </div>
+    </div>
   </div>
 </div>

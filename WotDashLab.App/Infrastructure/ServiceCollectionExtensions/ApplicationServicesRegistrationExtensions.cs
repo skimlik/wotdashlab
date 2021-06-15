@@ -17,6 +17,7 @@ namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
             // wgn
             services.AddScoped<IWgnAccountsService, WgnAccountsService>();
             services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IServerInfoService, ServerInfoService>();
             return services;
         }
     }
