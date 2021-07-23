@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using WotDashLab.Abstractions;
 using WotDashLab.Services;
 using WotDashLab.WebApi.Infrastructure;
@@ -13,7 +18,6 @@ using WotDashLab.WebApi.Infrastructure.Diagnostics;
 using WotDashLab.WebApi.Infrastructure.Options;
 using WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions;
 using WotDashLab.Wot.Client.Contracts;
-using WotDashLab.Wot.Client.Contracts.WorldOfTanks;
 
 namespace WotDashLab.WebApi
 {
@@ -51,6 +55,18 @@ namespace WotDashLab.WebApi
             services.RegisterWgClient();
 
             services.RegisterAppServices();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "WOT Dashboards Backend"
+                });
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +94,11 @@ namespace WotDashLab.WebApi
             app.UseHealthChecks(new PathString("/hc"));
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wot Dashboards Backend");
+            });
             app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
