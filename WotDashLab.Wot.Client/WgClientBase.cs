@@ -35,12 +35,22 @@ namespace WotDashLab.Wot.Client
             _client = httpClientFactory.CreateClient();
         }
 
-        public async Task<WotResponseBase<T>> PostAsync<T>(
+        public Task<WotResponseBase<TData, WotResponseMetadata>> FetchData<TData>(
             ApiType apiType,
             string region,
             string path,
             IDictionary<string, string> body,
             CancellationToken token)
+        {
+            return FetchData<TData, WotResponseMetadata>(apiType, region, path, body, token);
+        }
+
+        public async Task<WotResponseBase<TData, TMetadata>> FetchData<TData, TMetadata>(
+            ApiType apiType,
+            string region,
+            string path,
+            IDictionary<string, string> body,
+            CancellationToken token) where TMetadata : class, IWotResponseMetadata
         {
             string endpoint = _endpointResolver.Resolve(apiType, region);
             string url = CombineUrl(endpoint, path);
@@ -51,7 +61,7 @@ namespace WotDashLab.Wot.Client
 
             try
             {
-                var result = await postAsync.ReadAsAsync<WotResponseBase<T>>(token);
+                var result = await postAsync.ReadAsAsync<TData, TMetadata>(token);
                 
                 if (result is not null && result.Status.Equals("error"))
                 {
@@ -61,7 +71,7 @@ namespace WotDashLab.Wot.Client
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, "Error sending request to Wargaming api.");
+                _logger.LogError(exception, "Error sending request to WarGaming api");
                 throw;
             }
         }

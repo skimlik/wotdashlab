@@ -50,7 +50,7 @@ namespace WotDashLab.Services.Wgn
 
             var payload = request.Build();
             const string url = "account/list";
-            var result = await _wgClient.PostAsync<ICollection<WgnAccountSearchResult>>(ApiType, model.Region, url, payload, token);
+            var result = await _wgClient.FetchData<ICollection<WgnAccountSearchResult>>(ApiType, model.Region, url, payload, token);
 
             if (result.IsOk)
             {

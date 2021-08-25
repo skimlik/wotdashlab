@@ -39,7 +39,7 @@ namespace WotDashLab.Services.Wgn
             var payload = requestBuilder.Build();
 
             const string url = "servers/info";
-            var result = await _wgClient.PostAsync<IDictionary<string, WgnServerInfo[]>>(ApiType, region, url, payload, token);
+            var result = await _wgClient.FetchData<IDictionary<string, WgnServerInfo[]>>(ApiType, region, url, payload, token);
             if (result.IsOk)
             {
                 return result.Data;

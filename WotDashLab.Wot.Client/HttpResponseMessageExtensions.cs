@@ -10,12 +10,13 @@ namespace WotDashLab.Wot.Client
 {
     public static class HttpResponseMessageExtensions
     {
-        public static async Task<T> ReadAsAsync<T>(this HttpResponseMessage message, CancellationToken token)
+        public static async Task<WotResponseBase<TData, TMetadata>> ReadAsAsync<TData, TMetadata>(this HttpResponseMessage message, CancellationToken token)
+            where TMetadata : class, IWotResponseMetadata
         {
             var json = await message.Content.ReadAsStringAsync(token);
             try
             {
-                var obj = JsonSerializer.Deserialize<T>(json);
+                var obj = JsonSerializer.Deserialize<WotResponseBase<TData, TMetadata>>(json);
                 if (obj is not null)
                 {
                     return obj;
@@ -24,7 +25,7 @@ namespace WotDashLab.Wot.Client
             }
             catch(JsonException exception)
             {
-                var response = JsonSerializer.Deserialize<WotResponseBase<object>>(json);
+                var response = JsonSerializer.Deserialize<WotResponseBase<object, TMetadata>>(json);
                 throw new WgErrorException(
                     response.Error.Code,
                     response.Error.Message,

@@ -1,0 +1,14 @@
+export const WellKnownHttpErrors: {[key: number]: string[] } = {
+  402: ['%FIELD%_NOT_SPECIFIED'],
+  404: ['%FIELD%_NOT_FOUND', 'METHOD_NOT_FOUND'],
+  405: ['METHOD_DISABLED'],
+  407: [
+    '%FIELD%_LIST_LIMIT_EXCEEDED',
+    'APPLICATION_IS_BLOCKED',
+    'INVALID_%FIELD%',
+    'INVALID_APPLICATION_ID',
+    'INVALID_IP_ADDRESS',
+    'REQUEST_LIMIT_EXCEEDED'
+  ],
+  504: ['SOURCE_NOT_AVAILABLE']
+}

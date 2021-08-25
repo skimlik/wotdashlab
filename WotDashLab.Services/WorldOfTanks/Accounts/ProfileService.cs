@@ -41,7 +41,7 @@ namespace WotDashLab.Services.WorldOfTanks.Accounts
 
             var profileRequest = CreateProfileRequest(model);
 
-            var result = await _wgClient.PostAsync<IDictionary<int, AccountProfile>>(ApiType, model.Region, Url, profileRequest, token);
+            var result = await _wgClient.FetchData<IDictionary<int, AccountProfile>>(ApiType, model.Region, Url, profileRequest, token);
             if (result.Status == "ok" && result.Data.TryGetValue(model.AccountId, out var response))
             {
                 var profile = response.Adapt<AccountProfileModel>();

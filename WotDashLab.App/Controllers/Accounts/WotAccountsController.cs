@@ -53,7 +53,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             var resourcePath ="account/list";
             var results = await _wgClient
-                .PostAsync<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
+                .FetchData<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 
             return Ok(results.Data);
         }
@@ -68,7 +68,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             var resourcePath ="account/list";
             var search = await _wgClient
-                .PostAsync<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
+                .FetchData<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 
             if (search.Data.Length <= 0)
             {

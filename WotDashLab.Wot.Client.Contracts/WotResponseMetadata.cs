@@ -2,7 +2,7 @@
 
 namespace WotDashLab.Wot.Client.Contracts
 {
-    public class WotResponseMetadata
+    public class WotResponseMetadata : IWotResponseMetadata
     {
         [JsonPropertyName("count")]
         public int Count { get; set; }

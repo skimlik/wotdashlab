@@ -58,7 +58,7 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
             requestBuilder.Add("tank_id", string.Join(",", request.TankIds));
 
             var payload = requestBuilder.Build();
-            var result = await _wgClient.PostAsync<IDictionary<int, ShortTankInfo>>(ApiType, request.Region, Url, payload, token);
+            var result = await _wgClient.FetchData<IDictionary<int, ShortTankInfo>>(ApiType, request.Region, Url, payload, token);
             if (result.Status == "ok")
             {
                 var response = result.Data.Keys

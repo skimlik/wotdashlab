@@ -1,0 +1,45 @@
+<div class="youtube-feed-container container">
+  <h2 class="header">Official video channel</h2>
+
+  <div class="filters">
+    <nav aria-label="WGTV feed navigation" *ngIf="page$ | async as pageNo">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="selectFirstPage()">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let page of pageList$ | async">
+          <a
+            class="page-link"
+            [ngClass]="{'active': pageNo === page}"
+            (click)="selectPage(page)"
+            href="javascript:void(0)"
+          >
+            {{page}}
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="selectLastPage()">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="feed">
+    <div class="feed-item card" *ngFor="let item of feed$ | async">
+      <img [src]="item.thumbnails.default.url" [alt]="item.ext_title" [style.width.px]="item.thumbnails.default.width" class="img-thumbnail">
+      <div class="card-body">
+        <h5 class="card-title">{{item.ext_title}}</h5>
+        <p class="card-text mb-1">{{item.description}}</p>
+        <p class="card-text mb-1">
+          <small class="text-muted">
+            Published: {{item.published_at | unixDate | date:'short'}}
+          </small>
+        </p>
+        <a target="_blank" [href]="item.video_url" class="mt-1 btn btn-primary">Watch</a>
+      </div>
+    </div>
+  </div>
+</div>

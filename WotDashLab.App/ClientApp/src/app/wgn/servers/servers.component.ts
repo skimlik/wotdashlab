@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IServerInfo, IWgnState } from "../store/wgn.state";
 import { loadServers } from "./store/servers.actions";
-import { LocalStorageService } from "../../core/infrastructure/local-storage.service";
-import { serverInfosSelector } from "./index";
+import { LocalStorageService } from '../../core/infrastructure/local-storage.service';
+import { serverInfosSelector } from './store';
 
 @Component({
   selector: 'app-servers',

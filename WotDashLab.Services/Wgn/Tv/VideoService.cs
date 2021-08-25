@@ -18,7 +18,7 @@ namespace WotDashLab.Services.Wgn.Tv
             _wgClient = wgClient;
         }
 
-        public async Task<WgTvVideoInfo[]> Search(VideoSearchRequest model, string region, CancellationToken token)
+        public async Task<WotResponseBase<WgTvVideoInfo[], WotResponsePagedMetadata>> Search(VideoSearchRequest model, string region, CancellationToken token)
         {
             if (model == null)
             {
@@ -69,17 +69,16 @@ namespace WotDashLab.Services.Wgn.Tv
                 requestBuilder.Add("video_id", model.VideoIds.ToCommaSeparatedList());
             }
 
+            if (model.DateFrom.HasValue)
+            {
+                requestBuilder.Add("date_from", model.DateFrom.ToString());
+            }
+
             var payload = requestBuilder.Build();
             const string url = "wgtv/videos";
 
-            var result = await _wgClient.PostAsync<WgTvVideoInfo[]>(ApiType, region, url, payload, token);
-
-            if (result.IsOk)
-            {
-                return result.Data;
-            }
-
-            return null;
+            var result = await _wgClient.FetchData<WgTvVideoInfo[], WotResponsePagedMetadata>(ApiType, region, url, payload, token);
+            return result;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WotDashLab.Wot.Client.Contracts
 {
-    public class WotResponseBase<T>
+    public class WotResponseBase<TData, TMetadata> where TMetadata : class, IWotResponseMetadata
     {
         [JsonPropertyName("status")]
         public string Status { get; set; }
@@ -11,10 +11,10 @@ namespace WotDashLab.Wot.Client.Contracts
         public WotResponseError Error { get; set; }
 
         [JsonPropertyName("data")]
-        public T Data { get; set; }
+        public TData Data { get; set; }
 
         [JsonPropertyName("meta")]
-        public WotResponseMetadata Metadata { get; set; }
+        public TMetadata Metadata { get; set; }
 
         public bool IsOk => Status == "ok";
     }
