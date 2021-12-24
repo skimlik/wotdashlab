@@ -31,7 +31,7 @@ namespace WotDashLab.WebApi.Controllers.Tanks
         {
             var model = new TanksRequest
             {
-                TankIds = new [] { tankId },
+                TankIds = new[] { tankId },
                 Language = language,
                 Region = region
             };

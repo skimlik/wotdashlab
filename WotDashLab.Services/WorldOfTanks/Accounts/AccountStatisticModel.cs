@@ -35,7 +35,7 @@
         public decimal AvgDamageAssisted { get; set; }
 
         public int? MaxFragsTankId { get; set; }
-        
+
         public int? MaxDamageTankId { get; set; }
 
         public decimal AvgDamageAssistedTrack { get; set; }

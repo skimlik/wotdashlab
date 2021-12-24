@@ -12,7 +12,7 @@ namespace WotDashLab.Wot.Client
         {
             _applicationId = applicationId ?? throw new ArgumentNullException(nameof(applicationId));
         }
-        
+
         public IWgRequestBuilder CreateRequestBuilder()
         {
             return new WgRequestBuilder(_applicationId);

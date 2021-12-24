@@ -38,7 +38,7 @@ namespace WotDashLab.Wot.Client
 
         public IDictionary<string, string> Build()
         {
-            _request["application_id"] =  ApplicationId;
+            _request["application_id"] = ApplicationId;
             AddStringField("access_token", () => AccessToken);
             AddStringField("fields", () => Fields);
             AddStringField("language", () => Language);

@@ -68,7 +68,7 @@ namespace WotDashLab.WebApi.Infrastructure.Authentication
                         ClaimTypes.Role
                     );
 
-                    var principal = new ClaimsPrincipal(new[] {claimsIdentity});
+                    var principal = new ClaimsPrincipal(new[] { claimsIdentity });
                     var ticket = new AuthenticationTicket(principal, AuthenticationDefaults.DefaultSchema);
 
                     Logger.LogInformation("Authentication successful");

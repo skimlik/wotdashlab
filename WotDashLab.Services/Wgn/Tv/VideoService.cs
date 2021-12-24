@@ -11,7 +11,7 @@ namespace WotDashLab.Services.Wgn.Tv
         private readonly IWgRequestBuilderFactory _wgRequestBuilderFactory;
         private readonly IWgClientBase _wgClient;
         private const ApiType ApiType = Wot.Client.Contracts.ApiType.Wgn;
-        
+
         public VideoService(IWgRequestBuilderFactory wgRequestBuilderFactory, IWgClientBase wgClient)
         {
             _wgRequestBuilderFactory = wgRequestBuilderFactory;
@@ -63,7 +63,7 @@ namespace WotDashLab.Services.Wgn.Tv
             {
                 requestBuilder.Add("vehicle_id", model.VehicleIds.ToCommaSeparatedList());
             }
-            
+
             if (model.VideoIds is not null && model.VideoIds.Length > 0)
             {
                 requestBuilder.Add("video_id", model.VideoIds.ToCommaSeparatedList());

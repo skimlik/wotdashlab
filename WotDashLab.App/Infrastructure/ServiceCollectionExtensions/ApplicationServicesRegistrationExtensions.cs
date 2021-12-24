@@ -13,7 +13,7 @@ namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
             // wot
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<ITanksService, TanksService>();
-            
+
             // wgn
             services.AddScoped<IWgnAccountsService, WgnAccountsService>();
             services.AddScoped<IVideoService, VideoService>();

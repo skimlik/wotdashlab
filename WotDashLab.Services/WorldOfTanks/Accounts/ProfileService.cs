@@ -45,7 +45,7 @@ namespace WotDashLab.Services.WorldOfTanks.Accounts
             if (result.Status == "ok" && result.Data.TryGetValue(model.AccountId, out var response))
             {
                 var profile = response.Adapt<AccountProfileModel>();
-                
+
                 var tankIds = ResolveTankIds(response);
                 var tankInfos = await _tanksService.GetInfosAsync(new TanksRequest
                 {
@@ -69,7 +69,7 @@ namespace WotDashLab.Services.WorldOfTanks.Accounts
             {
                 return tankIds;
             }
-            
+
             AppendTankIdsFromStatistics(stats.All, tankIds);
             AppendTankIdsFromStatistics(stats.Clan, tankIds);
             AppendTankIdsFromStatistics(stats.Company, tankIds);
@@ -88,7 +88,7 @@ namespace WotDashLab.Services.WorldOfTanks.Accounts
             {
                 return;
             }
-            
+
             if (stats?.MaxXpTankId.HasValue ?? false)
             {
                 tankIds.Add(stats.MaxXpTankId.Value);

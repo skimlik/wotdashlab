@@ -51,7 +51,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             var payload = _requestBuilder.Build();
 
-            var resourcePath ="account/list";
+            var resourcePath = "account/list";
             var results = await _wgClient
                 .FetchData<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 
@@ -66,7 +66,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
             _requestBuilder.Add("type", AccountSearchTypes.Exact);
             var payload = _requestBuilder.Build();
 
-            var resourcePath ="account/list";
+            var resourcePath = "account/list";
             var search = await _wgClient
                 .FetchData<PlayerAccount[]>(ApiType, region, resourcePath, payload, token);
 

@@ -62,7 +62,7 @@ namespace WotDashLab.WebApi
                     Version = "v1",
                     Title = "WOT Dashboards Backend"
                 });
-                
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);

@@ -11,7 +11,7 @@ namespace WotDashLab.Services.Wgn
         public string Language { get; set; }
 
         public string Region { get; set; }
-        
+
         public int Limit { get; set; }
 
         public string Type { get; set; } = AccountSearchTypes.StartsWith;

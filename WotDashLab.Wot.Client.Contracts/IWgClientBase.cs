@@ -12,7 +12,7 @@ namespace WotDashLab.Wot.Client.Contracts
             string path,
             IDictionary<string, string> body,
             CancellationToken token);
-        
+
         Task<WotResponseBase<TData, TMetadata>> FetchData<TData, TMetadata>(
             ApiType apiType,
             string region,

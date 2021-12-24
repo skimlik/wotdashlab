@@ -14,8 +14,8 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
     {
         private const string Url = "encyclopedia/vehicles";
         private const ApiType ApiType = Wot.Client.Contracts.ApiType.Wot;
-        
-        private readonly string[] _defaultFields = new []
+
+        private readonly string[] _defaultFields = new[]
         {
             "tank_id",
             "name",
@@ -33,7 +33,7 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
             "price_credit",
             "prices_xp"
         };
-        
+
         private readonly IWgRequestBuilderFactory _requestBuilderFactory;
         private readonly IUserContext _userContext;
         private readonly IWgClientBase _wgClient;

@@ -15,7 +15,7 @@ namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
             {
                 cfg.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
-            
+
             services.AddTransient<IWgRequestBuilder>(serviceProvider =>
             {
                 var options = serviceProvider.GetRequiredService<IOptions<WotOptions>>();
@@ -29,9 +29,9 @@ namespace WotDashLab.WebApi.Infrastructure.ServiceCollectionExtensions
                 var applicationId = options.Value.ApplicationId;
                 return new WgRequestBuilderFactory(applicationId);
             });
-            
+
             services.AddScoped<IWgClientBase, WgClientBase>();
-            
+
             return services;
         }
     }

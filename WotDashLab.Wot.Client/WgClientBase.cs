@@ -62,7 +62,7 @@ namespace WotDashLab.Wot.Client
             try
             {
                 var result = await postAsync.ReadAsAsync<TData, TMetadata>(token);
-                
+
                 if (result is not null && result.Status.Equals("error"))
                 {
                     throw new WgErrorException(result.Error.Code, result.Error.Message, result.Error.Field, result.Error.Value);

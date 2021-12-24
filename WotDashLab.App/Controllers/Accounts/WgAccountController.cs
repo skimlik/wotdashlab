@@ -18,7 +18,7 @@ namespace WotDashLab.WebApi.Controllers.Accounts
         {
             _wgnAccounts = wgnAccounts ?? throw new ArgumentNullException(nameof(wgnAccounts));
         }
-        
+
         [HttpPost]
         [Route("search")]
         public async Task<IActionResult> Search(

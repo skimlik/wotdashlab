@@ -26,7 +26,7 @@ namespace WotDashLab.Services.WorldOfTanks.Accounts
         public AccountPrivateInfoModel Private { get; set; }
 
         public StatisticSegmentsModel Statistics { get; set; }
-        
+
         public IDictionary<int, TankInfoModel> TankInfos { get; set; }
     }
 }

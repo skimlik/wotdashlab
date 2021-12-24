@@ -3,12 +3,12 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
     public class TankImagesModel
     {
         public string SmallIcon { get; set; }
-        
+
         public string ContourIcon { get; set; }
-        
+
         public string BigIcon { get; set; }
     }
-    
+
     public class TankInfoModel
     {
         public int Id { get; set; }

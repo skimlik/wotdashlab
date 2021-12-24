@@ -18,21 +18,21 @@ namespace WotDashLab.Wot.Client.Contracts.Exceptions
         }
 
         public WgErrorException(int code, string name)
-            :base(name)
+            : base(name)
         {
             Code = code;
             Name = name;
         }
 
         public WgErrorException(int code, string name, string field, string value)
-            :this(code, name)
+            : this(code, name)
         {
             Field = field;
             Value = value;
         }
 
         public WgErrorException(int code, string name, string field, string value, Exception innerException)
-            :base(name, innerException)
+            : base(name, innerException)
         {
             Code = code;
             Name = name;

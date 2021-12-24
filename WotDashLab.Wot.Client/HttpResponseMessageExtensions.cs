@@ -23,7 +23,7 @@ namespace WotDashLab.Wot.Client
                 }
                 throw new FormatException("Cannot deserialize response");
             }
-            catch(JsonException exception)
+            catch (JsonException exception)
             {
                 var response = JsonSerializer.Deserialize<WotResponseBase<object, TMetadata>>(json);
                 throw new WgErrorException(

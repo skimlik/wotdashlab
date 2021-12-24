@@ -25,7 +25,7 @@ namespace WotDashLab.Wot.Client.Contracts.WorldOfTanks.Tanks
 
         [JsonPropertyName("price_gold")]
         public int? PriceGold { get; set; }
-        
+
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
@@ -37,7 +37,7 @@ namespace WotDashLab.Wot.Client.Contracts.WorldOfTanks.Tanks
 
         [JsonPropertyName("is_premium_igr")]
         public bool IsPremiumIgr { get; set; }
-        
+
         [JsonPropertyName("is_wheeled")]
         public bool IsWheeled { get; set; }
 

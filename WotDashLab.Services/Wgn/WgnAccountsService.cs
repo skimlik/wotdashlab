@@ -32,12 +32,12 @@ namespace WotDashLab.Services.Wgn
             var request = _requestBuilderFactory.CreateRequestBuilder();
             request.Language = string.IsNullOrWhiteSpace(model.Language) ? "ru" : model.Language;
             request.Add("search", model.Search);
-            
+
             if (model.Fields is not null && model.Fields.Length > 0)
             {
                 request.Fields = string.Join(",", model.Fields);
             }
-            
+
             if (model.Limit != default && model.Limit > 0)
             {
                 request.Add(WellKnownFieldNames.Limit, model.Limit.ToString());

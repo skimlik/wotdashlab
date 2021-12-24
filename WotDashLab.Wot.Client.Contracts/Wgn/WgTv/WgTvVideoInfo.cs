@@ -21,23 +21,23 @@ namespace WotDashLab.Wot.Client.Contracts.Wgn.WgTv
 
         [JsonPropertyName("high")]
         public VideoThumbnail High { get; set; }
-        
+
         [JsonPropertyName("medium")]
         public VideoThumbnail Medium { get; set; }
-        
+
         [JsonPropertyName("maxres")]
         public VideoThumbnail MaxResolution { get; set; }
-        
+
         [JsonPropertyName("standard")]
         public VideoThumbnail Standard { get; set; }
-        
+
     }
-    
+
     public class WgTvVideoInfo
     {
         [JsonPropertyName("category_id")]
         public int[] CategoryIds { get; set; }
-        
+
         [JsonPropertyName("description")]
         public string Description { get; set; }
 

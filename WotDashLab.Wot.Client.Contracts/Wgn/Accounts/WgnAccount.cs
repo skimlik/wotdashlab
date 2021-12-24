@@ -13,7 +13,7 @@ namespace WotDashLab.Wot.Client.Contracts.Wgn.Accounts
         [JsonPropertyName("gold")]
         public int Gold { get; set; }
     }
-    
+
     public class WgnAccount
     {
         [JsonPropertyName("games")]
@@ -29,6 +29,6 @@ namespace WotDashLab.Wot.Client.Contracts.Wgn.Accounts
         public int AccountId { get; set; }
 
         [JsonPropertyName("private")]
-        public WgnAccountPrivateInfo  Private { get; set; }
+        public WgnAccountPrivateInfo Private { get; set; }
     }
 }
