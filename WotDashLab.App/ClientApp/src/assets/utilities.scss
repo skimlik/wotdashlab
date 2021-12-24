@@ -1,0 +1,25 @@
+@import "./variables";
+
+@mixin colorizeButton($clr, $bg) {
+  border: 3px outset $clr;
+  background: $bg;
+  color: $clr;
+}
+
+.button {
+  @include colorizeButton($mainColor, $bgColor);
+  border-radius: 0.4em;
+  text-decoration: none;
+  cursor: pointer;
+  padding: .4em .6em;
+
+  &:hover {
+    color: $mainColor;
+    background: lighten($mainColor, 60);
+  }
+  &:focus {
+    color: $bgColor;
+    background: lighten($mainColor, 5);
+    border: 2px solid darken($mainColor, 5);
+  }
+}

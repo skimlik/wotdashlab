@@ -6,6 +6,10 @@ root = true
 [*]
 indent_style = space
 max_line_length = 160
+dotnet_style_prefer_is_null_check_over_reference_equality_method=true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment=true:suggestion
+dotnet_style_prefer_conditional_expression_over_return=true:suggestion
+dotnet_style_allow_multiple_blank_lines_experimental=false:silent
 
 [*.json]
 indent_size = 2
@@ -117,3 +121,6 @@ csharp_preferred_modifier_order = public,private,protected,internal,static,exter
 # Wrapping preferences
 csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
+csharp_style_namespace_declarations=block_scoped:suggestion
+csharp_style_var_for_built_in_types=false:suggestion
+csharp_style_var_when_type_is_apparent=true:silent

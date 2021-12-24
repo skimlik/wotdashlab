@@ -4,7 +4,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountSearchComponent } from './search/account-search.component';
 import { FormsModule } from '@angular/forms';
-import { AgGridModule } from 'ag-grid-angular';
 import { AccountProfileComponent } from './search/account-profile.component';
 import { StoreModule } from '@ngrx/store';
 import { featureName } from './store';
@@ -48,7 +47,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    AgGridModule.withComponents([]),
     StoreModule.forFeature(featureName, reducers),
     EffectsModule.forFeature([AccountProfileEffects]),
     FormsModule,

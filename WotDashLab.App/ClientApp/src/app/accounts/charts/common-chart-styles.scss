@@ -5,15 +5,26 @@
   vertical-align: center;
   margin-left: auto;
 
+  .label-host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .svg-host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .label {
     white-space: nowrap;
   }
 
   .good {
-    color: $green-color;
+    color: $bs-success;
   }
 
   .bad {
-    color: $red-color;
+    color: $bs-danger;
   }
 }

@@ -1,5 +1,5 @@
 <div class="account-frags-ratio-chart-container parent-container">
-  <div>
+  <div class="label-host">
     <span class="text-primary label">
       Frags ratio (
       <span [ngClass]="{ 'good': ratio >= .5, 'bad': ratio < .5 }">
@@ -7,7 +7,7 @@
       </span>)
     </span>
   </div>
-  <div>
+  <div class="svg-host">
     <svg></svg>
   </div>
 </div>

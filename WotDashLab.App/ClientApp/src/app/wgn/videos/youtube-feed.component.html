@@ -9,10 +9,9 @@
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item" *ngFor="let page of pageList$ | async">
+        <li class="page-item" [ngClass]="{'active': pageNo === page}" *ngFor="let page of pageList$ | async">
           <a
             class="page-link"
-            [ngClass]="{'active': pageNo === page}"
             (click)="selectPage(page)"
             href="javascript:void(0)"
           >

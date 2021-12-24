@@ -1,30 +1,59 @@
 @import "~src/assets/variables";
-
-h6 {
-  margin-top: 10px;
+.servers-container {
+  margin: 0 auto;
+  width: 50%;
 }
 
-.server-info,
 .header {
+  margin-top: 2em;
+}
+
+.scope {
+  margin-top: 1em;
   width: 420px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  margin-right: 20px;
-}
 
-.server-info {
-  border-bottom: 1px solid $light-green-color;
-}
-
-.header {
-  font-weight: bolder;
-}
-
-@media (min-width: $smallScreen) {
-  .reports {
+  .title {
     display: flex;
+    justify-content: space-around;
+    font-size: larger;
+    font-weight: bolder;
+    padding-bottom: 1em;
+  }
+
+  .server-info {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0;
+  }
+
+  .grid-cell {
+    padding: 6px 0;
+  }
+
+  .grid-row {
+    display: flex;
+    color: $bs-gray;
+    font-size: smaller;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    margin-right: 20px;
+    border-bottom: 1px solid #ddd;
+    &:hover:not(.grid-header-row) {
+      background: #eee;
+    }
+  }
+
+  .grid-header-row {
+    font-weight: bolder;
+    border-bottom: 2px solid gray;
+  }
+
+  .server-name {
+    flex-basis: 70%;
+  }
+
+  .players-online {
+    flex-grow: 1;
+    border-left: 1px solid #ddd;
+    text-align: right;
   }
 }

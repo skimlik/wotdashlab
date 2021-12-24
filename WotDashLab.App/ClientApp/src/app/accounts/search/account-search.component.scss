@@ -1,4 +1,73 @@
-﻿#accountsGrid {
-  min-height: 300px;
-  height: calc(100% - 280px);
+﻿@import '../../../assets/variables';
+
+.grid-container {
+  margin: 12px auto 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  .grid-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+
+    &:hover:not(.grid-header-row) {
+      background-color: #eee;
+    }
+
+    &.grid-header-row {
+      border-bottom: 2px solid $bs-gray-dark;
+    }
+
+    .grid-cell {
+      white-space: nowrap;
+      padding: 8px;
+
+      &:not(:first-child) {
+        border-left: 1px solid #ddd;
+      }
+
+      &.grid-header-cell {
+        font-weight: 600;
+      }
+
+      &.account-cell {
+        flex-basis: 10em;
+      }
+      &.name-cell {
+        flex-basis: 16em;
+      }
+      &.createdAt-cell {
+        flex-basis: 12em;
+      }
+      &.games-cell {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .account-name-action-cell {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .action-name {
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+    }
+    .action-icon {
+      color: $bs-success;
+      cursor: pointer;
+    }
+  }
+
+  .no-rows-overlay {
+    color: $bs-gray-dark;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 32px;
+  }
 }

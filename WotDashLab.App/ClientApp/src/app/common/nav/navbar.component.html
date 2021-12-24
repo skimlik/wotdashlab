@@ -1,8 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-<!--    <a class="navbar-brand" routerLink="/">-->
-<!--      {{ brand$ | async }}-->
-<!--    </a>-->
     <button
       class="navbar-toggler"
       type="button"
@@ -16,10 +13,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/">Home</a>
+          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+            <span class="link-icon fa fa-home" aria-label="Home"></span>
+            <span class="link-text">Home</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/wgn/servers" routerLinkActive="active">WGN Servers</a>
+          <a routerLink="/accounts" class="nav-link" routerLinkActive="active">
+            <span class="link-icon fa fa-search" aria-label="search accounts"></span>
+            <span class="link-text">Search</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/wgn/servers" routerLinkActive="active">
+            <span class="link-icon fa fa-server" aria-label="Servers"></span>
+            <span class="link-text">Servers</span>
+          </a>
         </li>
       </ul>
       <form class="d-flex">

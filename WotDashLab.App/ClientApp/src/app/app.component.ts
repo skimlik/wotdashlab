@@ -15,6 +15,7 @@ import { IAuthInfo } from './core/infrastructure/authentication/auth-info';
 import { activeAccountProfileSelector } from "./accounts/store/profile";
 import { IAccountProfileState } from "./accounts/store/profile/account-profile.state";
 import { IAccountsState } from "./accounts/store/accounts-state";
+import { SupportedRegions } from "./common/constants/string-constraints";
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   brand$ = this.store.pipe(select(applicationTitleSelector));
   availableRegions$ = this.store.pipe(
     select(redirectsSelector),
-    map((redirects) => Object.keys(redirects))
+    map((redirects) => Object.keys(redirects) as SupportedRegions[])
   );
   currentApiName$ = this.store.pipe(
     select(currentAppDescriptionSelector),
@@ -76,7 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._dispose$.complete();
   }
 
-  onRegionChange(region: string) {
+  onRegionChange(region: SupportedRegions) {
     this.currentRegion = region;
     this.localStorage.setValue('region', JSON.stringify({ default: region }));
   }

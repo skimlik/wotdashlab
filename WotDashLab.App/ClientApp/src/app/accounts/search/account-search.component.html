@@ -9,20 +9,34 @@
   </div>
   <div class="row full-height">
     <div class="col-xl-12 mt-2">
-      <ag-grid-angular
-          #grid
-          id="accountsGrid"
-          class="ag-theme-alpine"
-          style="width: 100%"
-          rowSelection="single"
-          [components]="components"
-          [animateRows]="true"
-          [context]="context"
-          [rowData]="rowData$ | async"
-          [columnDefs]="gridColumns"
-          [defaultColDef]="defaultColDef"
-          (gridReady)="onGridReady($event)"
-      ></ag-grid-angular>
+      <div class="grid-container">
+        <div class="grid-row grid-header-row">
+          <div class="grid-cell grid-header-cell account-cell">Account #</div>
+          <div class="grid-cell grid-header-cell name-cell">Nickname</div>
+          <div class="grid-cell grid-header-cell createdAt-cell">Created At</div>
+          <div class="grid-cell grid-header-cell games-cell">Registered games</div>
+        </div>
+        <ng-container *ngIf="this.rowData$ | async as data">
+          <ng-container *ngIf="data.length > 0; else noRows">
+            <div class="grid-row" *ngFor="let account of data">
+              <div class="grid-cell account-cell">{{account.account_id}}</div>
+              <div class="grid-cell name-cell">
+                <div class="account-name-action-cell">
+                  <div class="action-text">{{account.nickname}}</div>
+                  <span class="action-icon fa fa-address-book" aria-hidden="true" (click)="openProfile(account.account_id)"></span>
+                </div>
+              </div>
+              <div class="grid-cell createdAt-cell">{{account.created_at | unixDate | date:'short'}}</div>
+              <div class="grid-cell games-cell">{{resolveGameName(account.games)}}</div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
+<ng-template #noRows>
+  <div class="no-rows-overlay">
+    No rows found, please refine your search.
+  </div>
+</ng-template>

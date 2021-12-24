@@ -1,0 +1,28 @@
+<div class="navigation">
+  <div class="list">
+    <ng-container *ngFor="let item of items">
+      <a
+        class="list-item"
+        *ngIf="!hide(item) && item?.url"
+        routerLinkActive="active"
+        [routerLink]="item.url"
+      >
+        <div class="list-item-content">
+          <span [ngClass]="item.iconClass" class="icon"></span>
+          <span class="text">{{item.name}}</span>
+        </div>
+      </a>
+      <a
+        class="list-item"
+        *ngIf="!hide(item) && !item?.url"
+        (click)="item?.command()"
+      >
+        <div class="list-item-content">
+          <span [ngClass]="item.iconClass" class="icon"></span>
+          <span class="text">{{item.name}}</span>
+        </div>
+      </a>
+    </ng-container>
+    <div class="indicator"></div>
+  </div>
+</div>

@@ -1,3 +1,17 @@
-﻿.info-graph {
-  padding-right: 0;
+﻿.profiles-attributes {
+  padding: 6px 0;
+}
+.widget-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1em;
+  row-gap: 1em;
+  margin-bottom: 1em;
+
+  .widget-placeholder {
+    flex-grow: 1;
+  }
 }
