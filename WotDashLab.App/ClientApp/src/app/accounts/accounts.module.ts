@@ -23,6 +23,7 @@ import { AccountDamageRatioChartComponent } from "./charts/account-damage-ratio-
 import { AccountFragsRatioChartComponent } from "./charts/frags-ratio-chart/account-frags-ratio-chart.component";
 import { AccountAttributesComponent } from "./account-attributes.component";
 import { UnixDatePipe } from "../common/unix-date.pipe";
+import { AccountStatisticsCardComponent } from "./cards/account-statistics/account-statistics-card.component";
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
     AccountInfoCardComponent,
     AccountBriefStatisticsCardComponent,
     MaxResultsCardComponent,
+    AccountStatisticsCardComponent,
     AccountProfileInfoGraphCardComponent,
     AccountWinRateChartComponent,
     AccountSurvivedRatioComponent,

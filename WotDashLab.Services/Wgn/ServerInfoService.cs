@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WotDashLab.Wot.Client.Contracts;
@@ -42,7 +43,14 @@ namespace WotDashLab.Services.Wgn
             var result = await _wgClient.FetchData<IDictionary<string, WgnServerInfo[]>>(ApiType, region, url, payload, token);
             if (result.IsOk)
             {
-                return result.Data;
+                IDictionary<string, WgnServerInfo[]> data = result.Data;
+                IDictionary<string, WgnServerInfo[]> sorted = new Dictionary<string, WgnServerInfo[]>();
+                foreach (string key in data.Keys)
+                {
+                    var servers = data[key].OrderByDescending(k => k.PlayersOnline).ThenBy(k => k.Server);
+                    sorted[key] = servers.ToArray();
+                }
+                return sorted;
             }
 
             return null;

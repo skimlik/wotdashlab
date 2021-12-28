@@ -21,5 +21,3 @@ export const activeAccountProfileSelector = createSelector(
   activeAccountIdSelector,
   (state, accountId) => state.profiles[accountId]
 );
-
-

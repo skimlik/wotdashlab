@@ -1,0 +1,39 @@
+<div class="account-statistics-card-container" *ngIf="statistics">
+  <div class="grid">
+    <div class="grid-row grid-header-row">
+      <div class="grid-cell grid-header-cell">Matter</div>
+      <div class="grid-cell grid-header-cell">Per Battle</div>
+      <div class="grid-cell grid-header-cell">Total</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Frags</div>
+      <div class="grid-cell">{{statistics.fragsPerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.frags | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Spots</div>
+      <div class="grid-cell">{{statistics.spottedPerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.spotted | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Damage dealt</div>
+      <div class="grid-cell">{{statistics.damageDealtPerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.damageDealt | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Damage received</div>
+      <div class="grid-cell">{{statistics.damageReceivedPerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.damageReceived | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Capture points</div>
+      <div class="grid-cell">{{statistics.capturePointsPerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.capturePoints | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell muted">Defense</div>
+      <div class="grid-cell">{{statistics.defencePerBattle | number}}</div>
+      <div class="grid-cell">{{statistics.defence | number}}</div>
+    </div>
+  </div>
+</div>
