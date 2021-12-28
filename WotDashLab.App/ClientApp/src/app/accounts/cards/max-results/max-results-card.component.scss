@@ -1,21 +1,68 @@
+@import '~src/assets/variables';
+
+@mixin truncateText() {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .max-results-card-container {
   height: 200px;
 }
 
-.d-table-cell {
+.table-row {
+  position: relative;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  row-gap: 4px;
+  height: 32px;
+  width: 100%;
 
-  .d-flex-cell {
-    flex: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .table-cell {
+    position: relative;
+    @include truncateText();
 
-    &:first-child {
-      flex: auto;
+    &:nth-child(1) {
+      flex: 0 1 auto;
+      width: 120px;
+    }
+
+    &:nth-child(2) {
+      flex: 0 1 auto;
+      width: 40%;
+    }
+
+    &:nth-child(3) {
+      flex: 1 1 auto;
+      width: 25%;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .max-tank {
+      position: relative;
+      width: 180px;
+
+
+      & > img {
+        height: 24px;
+        width: 48px;
+      }
+
+      &::before {
+        @include truncateText();
+        content: attr(data-tankname);
+        font-family: Calibri, sans-serif;
+        z-index: 777;
+        position: absolute;
+        background: transparent;
+        top: 4px;
+        left: 64px;
+        font-size: 12px;
+        color: $mainColor;
+      }
     }
   }
 }

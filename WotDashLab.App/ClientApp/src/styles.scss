@@ -31,11 +31,11 @@ html, body {
 }
 
 .green {
-  fill: $bs-teal;
+  fill: $accentColor;
 }
 
 .neutral {
-  fill: $bs-secondary;
+  fill: $mainColor;
 }
 
 .lighten {
@@ -44,10 +44,22 @@ html, body {
   }
 
   &.green {
-    fill: lighten($bs-green, 5)
+    fill: lighten($accentColor, 5)
   }
 
   &.neutral {
-    fill: lighten($bs-secondary, 5)
+    fill: lighten($mainColor, 5)
   }
+}
+
+.truncate-text {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticker {
+  border: 1px solid $accentColor;
+  box-shadow: 3px 3px 5px $bs-light;
+  padding: 1em;
 }

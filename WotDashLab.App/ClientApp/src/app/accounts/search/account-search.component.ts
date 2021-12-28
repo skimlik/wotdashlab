@@ -2,15 +2,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, take, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, of, Subject } from 'rxjs';
-import { ColDef, ColumnApi, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
-import { CollectionUtils } from '../../core/services/collection.utils';
-import { IWgnAccountSearchResult, IWotAccount } from '../account';
-import { GetAccountGridCellRenderers } from './account-grid-actions-cell.renderers';
+import { IWgnAccountSearchResult } from '../account';
 import { WgnAccountSearchService } from "./wgn-account-search.service";
-import { IApplicationSettingsState } from "../../core/store/core.state";
-import { Store } from "@ngrx/store";
-import { DatePipe } from "@angular/common";
-import { UnixDatePipe } from "../../common/unix-date.pipe";
 
 @Component({
   selector: 'account-search',
@@ -58,6 +51,10 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
 
   openProfile(accountId: number): void {
     this.router.navigate(['accounts', accountId]);
+  }
+
+  isWotProfile(games: string[]): boolean {
+    return games?.some(g => g === 'wot') || false;
   }
 
   resolveGameName(value: string[]) {

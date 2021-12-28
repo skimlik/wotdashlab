@@ -1,4 +1,8 @@
 @import "~src/assets/variables";
+[data-value] {
+  --x: attr(data-value);
+}
+
 .servers-container {
   margin: 0 auto;
   width: 50%;
@@ -27,9 +31,20 @@
 
   .grid-cell {
     padding: 6px 0;
+    position: relative;
+
+    .indicator {
+      background: $mainColor;
+      opacity: .5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
   }
 
   .grid-row {
+    position: relative;
     display: flex;
     color: $bs-gray;
     font-size: smaller;

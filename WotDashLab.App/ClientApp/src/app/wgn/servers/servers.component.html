@@ -9,11 +9,14 @@
     <div class="scope">
       <div class="title">World Of Tanks</div>
       <div class="grid-row grid-header-row">
-        <div class="server-name grid-cell">Server Name</div>
-        <div class="players-online grid-cell">Players Online</div>
+        <div class="server-name grid-cell grid-header-cell">Server Name</div>
+        <div class="players-online grid-cell grid-header-cell">Players Online</div>
       </div>
       <div class="grid-row" *ngFor="let srv of servers$('wot') | async">
-        <div class="server-name grid-cell">{{srv.server}}</div>
+        <div class="server-name grid-cell" [attr.data-value]="getRatio$('wot', srv.players_online) | async">
+          <span class="indicator" [style.width]="(getRatio$('wot', srv.players_online) | async) + '%'"></span>
+          {{srv.server}}
+        </div>
         <div class="players-online grid-cell">{{srv.players_online}}</div>
       </div>
     </div>

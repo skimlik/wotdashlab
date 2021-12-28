@@ -4,7 +4,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountSearchComponent } from './search/account-search.component';
 import { FormsModule } from '@angular/forms';
-import { AccountProfileComponent } from './search/account-profile.component';
+import { AccountProfileComponent } from './profile/account-profile.component';
 import { StoreModule } from '@ngrx/store';
 import { featureName } from './store';
 import { reducers } from './store/accounts-state';

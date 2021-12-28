@@ -1,3 +1,31 @@
 ﻿.profile-info-card {
   height: 200px;
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .table-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .table-cell {
+        &:first-child {
+          flex: 0 0 auto;
+          width: 120px;
+        }
+
+        &:last-child {
+          flex: 1;
+        }
+      }
+    }
+  }
 }

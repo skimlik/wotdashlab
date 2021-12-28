@@ -2,17 +2,47 @@
 
 .profile-brief-stat-card {
   height: 200px;
-}
 
-.damage-ratio-cell {
-  white-space: nowrap;
+  .flex-table {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
 
-  .fa-arrow-up {
-    color: $bs-success;
-    margin-right: 4px;
-  }
-  .fa-arrow-down {
-    color: $bs-danger;
-    margin-right: 4px;
+    .table-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      .table-cell {
+        &:last-child {
+          text-align: right;
+        }
+
+        &.damage-ratio-cell {
+          & ~ span {
+            margin: 0;
+            padding: 0;
+          }
+
+          .ratio-separator {
+            padding: 0 6px;
+          }
+
+          white-space: nowrap;
+
+          .fa-arrow-up {
+            color: $bs-success;
+            margin-right: 4px;
+          }
+
+          .fa-arrow-down {
+            color: $bs-danger;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
   }
 }

@@ -59,6 +59,11 @@
     .action-icon {
       color: $bs-success;
       cursor: pointer;
+
+      &.inactive {
+        cursor: not-allowed;
+        color: lightgray;
+      }
     }
   }
 

@@ -23,7 +23,13 @@
               <div class="grid-cell name-cell">
                 <div class="account-name-action-cell">
                   <div class="action-text">{{account.nickname}}</div>
-                  <span class="action-icon fa fa-address-book" aria-hidden="true" (click)="openProfile(account.account_id)"></span>
+                  <span
+                    class="action-icon fa fa-address-book"
+                    aria-hidden="true"
+                    [ngClass]="{'inactive': !isWotProfile(account.games)}"
+                    (click)="openProfile(account.account_id)"
+                  >
+                  </span>
                 </div>
               </div>
               <div class="grid-cell createdAt-cell">{{account.created_at | unixDate | date:'short'}}</div>

@@ -4,7 +4,7 @@ import { ICoreState } from '../../core/store/core.state';
 import { appSettingsSelector } from '../../core/store/settings';
 import { IWotAppDescription } from '../../core/infrastructure/application-settings.';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { IServerInfo, IWgnState } from "../store/wgn.state";
 import { loadServers } from "./store/servers.actions";
 import { LocalStorageService } from '../../core/infrastructure/local-storage.service';
@@ -37,7 +37,24 @@ export class ServersComponent implements OnInit {
 
   servers$(apiType: string): Observable<IServerInfo[]> {
     return this.serverInfos$.pipe(
-      map(data => data[apiType])
+      map(data => data[apiType]),
+      filter(data => Array.isArray(data)),
     );
+  }
+
+  getRatio$(apiType: string, value: number): Observable<number> {
+    return this.servers$(apiType).pipe(
+      map(data => {
+        const playersOnline = data.map(d => d.players_online);
+        const maxValue = playersOnline.reduce((acc, item) => {
+          if (isNaN(acc) || acc < item) {
+            return item;
+          }
+          return acc;
+        }, NaN) ?? 0;
+        return (value * 100) / maxValue;
+      }),
+      distinctUntilChanged()
+    )
   }
 }

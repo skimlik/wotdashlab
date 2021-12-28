@@ -1,25 +1,40 @@
 @import "./variables";
 
 @mixin colorizeButton($clr, $bg) {
-  border: 3px outset $clr;
   background: $bg;
   color: $clr;
 }
 
+@mixin focusShadow() {
+  border: 1px solid $mainColor;
+  box-shadow: -1px -1px 3px 1px lighten($mainColor, 10),
+  0 1px 3px 1px lighten($mainColor, 10),
+  1px 0 3px 1px lighten($mainColor, 10);
+}
+
 .button {
   @include colorizeButton($mainColor, $bgColor);
-  border-radius: 0.4em;
-  text-decoration: none;
+  outline: none;
+  border: 3px solid transparent;
+
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  font-weight: 500;
+  height: 32px;
+  width: 64px;
   cursor: pointer;
-  padding: .4em .6em;
 
   &:hover {
-    color: $mainColor;
-    background: lighten($mainColor, 60);
+    background-color: darken($mainColor, 10);
   }
+
   &:focus {
-    color: $bgColor;
+
     background: lighten($mainColor, 5);
-    border: 2px solid darken($mainColor, 5);
+    @include focusShadow();
   }
+}
+
+.muted {
+  color: $muted;
 }
