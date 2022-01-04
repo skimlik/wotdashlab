@@ -1,9 +1,14 @@
-﻿.search-box-container {
+﻿@import '~src/assets/mixins';
+@import '~src/assets/variables';
+
+.search-box-container {
+  position: relative;
   padding: 0;
   font-size: smaller;
   height: 2.5em;
   display: flex;
   justify-content: space-between;
+  background-color: $bgColor;
 
   .action-icon {
     height: 24px;
@@ -15,12 +20,14 @@
     color: lightgray;
     cursor: pointer;
     .fa {
-      user-select: none;
+      @include noUserSelect();
     }
   }
 
   input[type='text'] {
+    position: relative;
     padding: 3px;
+    background-color: $bgColor;
     border: none;
     outline: none;
     flex: auto;
@@ -37,7 +44,6 @@
 .drop-down-area {
   min-height: 45px;
   min-width: 230px;
-  margin-top: 2px;
   z-index: 1000;
 
   .drop-down-container {
@@ -54,7 +60,8 @@
 
     &.search-container {
       .search-item {
-        user-select: none;
+        @include noUserSelect();
+
         &.active {
           background-color: lightgray;
         }
