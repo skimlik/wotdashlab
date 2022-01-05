@@ -1,18 +1,62 @@
-﻿.search-box {
+﻿@import '~/src/assets/variables';
+
+:host {
+  width: 100%;
+}
+
+.search-box {
   width: 320px;
 }
 
-.nav-link {
-  font-family: Calibri, sans-serif;
-  padding: 0;
+.nav-bar {
+  width: 100%;
+  background-color: $bs-dark;
+  padding: 8px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  align-items: center;
 
-  .link-text {
-    font-size: .65em;
-    padding-top: .5em;
-    letter-spacing: .2em;
+  .nav-bar-right {
+    flex: 0 0 auto;
+  }
+
+  .nav-bar-links {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1.5em;
+    justify-content: flex-start;
+
+    .nav-bar-link {
+      color: $bgColor;
+
+      .nav-link {
+        font-family: "Calibri", sans-serif;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        color: #ccc;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+
+        &.active {
+          color: $bgColor;
+        }
+
+        .link-text {
+          font-size: .75em;
+          padding-top: .5em;
+          letter-spacing: .2em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mediumScreen) {
+  .nav-bar-right {
+    display: none;
   }
 }

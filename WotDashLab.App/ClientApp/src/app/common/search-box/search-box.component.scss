@@ -2,6 +2,8 @@
 @import '~src/assets/variables';
 
 .search-box-container {
+  box-sizing: border-box;
+  background: $bgColor;
   position: relative;
   padding: 0;
   font-size: smaller;
@@ -9,6 +11,9 @@
   display: flex;
   justify-content: space-between;
   background-color: $bgColor;
+  border: 1px solid $mainColor;
+  border-radius: 3px;
+  opacity: 1;
 
   .action-icon {
     height: 24px;
@@ -25,8 +30,10 @@
   }
 
   input[type='text'] {
+    margin-left: 3px;
     position: relative;
     padding: 3px;
+    opacity: 1;
     background-color: $bgColor;
     border: none;
     outline: none;
@@ -45,6 +52,13 @@
   min-height: 45px;
   min-width: 230px;
   z-index: 1000;
+  background: $bgColor;
+  border-top: 0;
+  border-radius: 3px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  border: 1px solid $mainColor;
+  box-sizing: border-box;
+  margin-top: 1px;
 
   .drop-down-container {
     margin: 10px 20px;
@@ -59,6 +73,9 @@
     }
 
     &.search-container {
+      margin-left: 0;
+      margin-right: 0;
+
       .search-item {
         @include noUserSelect();
 
@@ -73,11 +90,18 @@
 
         .item-icon {
           flex: 0 0 24px;
+          color: $mainColor;
         }
 
         .item-name {
-          flex: auto;
+          flex: 1 1 auto;
           text-overflow: ellipsis;
+          color: $mainColor;
+
+          .item-name-link, .item-name-link:visited, .item-name-link:focus {
+            color: $mainColor;
+            text-decoration: none;
+          }
         }
 
         .item-id {

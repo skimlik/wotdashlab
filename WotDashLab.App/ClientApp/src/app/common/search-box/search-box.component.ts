@@ -8,24 +8,12 @@
   OnInit,
   Output,
 } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  mergeMap,
-  takeUntil,
-  tap,
-} from 'rxjs/operators';
-import { ISearchServiceInterface } from './search-service-interface';
-import {
-  Drop,
-  DropFactoryService,
-  IDropOptions,
-} from '../../core/services/drop.service';
+import {BehaviorSubject, EMPTY, merge, Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, filter, map, mergeMap, takeUntil, tap} from 'rxjs/operators';
+import {ISearchServiceInterface} from './search-service-interface';
+import {Drop, DropFactoryService, IDropOptions} from '../../core/services/drop.service';
 import Popper from 'popper.js';
-import { ISearchResultItem } from './search-result-item';
+import {ISearchResultItem} from './search-result-item';
 import Placement = Popper.Placement;
 
 @Component({
@@ -36,9 +24,9 @@ import Placement = Popper.Placement;
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
   @Output() onItemSelected = new EventEmitter<ISearchResultItem>();
-  @Output() onShowAllResults = new EventEmitter<{ searchText: string }>();
+  @Output() onShowAllResults = new EventEmitter<{searchText: string}>();
 
-  @Input() datasource: ISearchServiceInterface;
+  @Input() dataSource: ISearchServiceInterface;
   @Input() placeholder = 'Search';
   @Input() inputDelay = 300;
   @Input() minSearchTextLength = 3;
@@ -52,23 +40,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   searching$: Observable<boolean>;
   items: ISearchResultItem[] = [];
   activeItemIndex = -1;
+  opened$: Observable<boolean> = EMPTY;
 
   private _disposed$ = new Subject<void>();
   private _drop: Drop;
   private _text$ = new BehaviorSubject<string>('');
   private _searching$ = new BehaviorSubject<boolean>(false);
 
-  constructor(
-    private host: ElementRef,
-    private dropFactory: DropFactoryService
-  ) {
-    this.text$ = this._text$
-      .asObservable()
-      .pipe(distinctUntilChanged(), takeUntil(this._disposed$));
+  constructor(private host: ElementRef, private dropFactory: DropFactoryService) {
+    this.text$ = this._text$.asObservable().pipe(distinctUntilChanged(), takeUntil(this._disposed$));
 
-    this.searching$ = this._searching$
-      .asObservable()
-      .pipe(takeUntil(this._disposed$));
+    this.searching$ = this._searching$.asObservable().pipe(takeUntil(this._disposed$));
 
     const search$ = this.text$.pipe(
       map((text) => text.trim()),
@@ -80,11 +62,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       tap(() => this._searching$.next(true)),
       debounceTime(this.inputDelay),
-      mergeMap((text) =>
-        this.datasource
-          .resolve(text)
-          .pipe(tap(() => this._searching$.next(false)))
-      ),
+      mergeMap((text) => this.dataSource.resolve(text).pipe(tap(() => this._searching$.next(false)))),
       takeUntil(this._disposed$)
     );
 
@@ -98,16 +76,21 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.textIsTooShort$ = this.text$.pipe(
-      map(
-        (text) =>
-          !!text && text.length > 0 && text.length < this.minSearchTextLength
-      )
+      map((text) => !!text && text.length > 0 && text.length < this.minSearchTextLength)
     );
 
     const attachment = this.host.nativeElement.querySelector('.drop-down-area');
     const target = this.host.nativeElement.querySelector('.search-input');
     const dropDownOptions = this.getDropOptions(attachment);
-    this._drop = this.dropFactory.createDrop(target, dropDownOptions);
+    this._drop = this.dropFactory.createDrop(target, dropDownOptions, true);
+    this.opened$ = merge([
+      this._drop.onOpened$.pipe(map(() => true)),
+      this._drop.onClosed$.pipe(map(() => false)),
+    ]).pipe(
+      mergeMap((data) => {
+        return data;
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -139,7 +122,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         placement: this.dropDirection,
         removeOnDestroy: true,
         modifiers: {
-          preventOverflow: { escapeWithReference: true },
+          preventOverflow: {escapeWithReference: true},
           flip: {
             boundariesElement: 'window',
             behavior: 'flip',
@@ -166,7 +149,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   showAllResults(searchText: string): void {
-    this.onShowAllResults.next({ searchText });
+    this.onShowAllResults.next({searchText});
     this.close();
     this.clear();
   }
@@ -179,22 +162,13 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     if (this._drop.isOpen) {
       switch (keyDown.code) {
         case 'ArrowDown':
-          this.activeItemIndex =
-            this.activeItemIndex >= this.items.length - 1
-              ? 0
-              : this.activeItemIndex + 1;
+          this.activeItemIndex = this.activeItemIndex >= this.items.length - 1 ? 0 : this.activeItemIndex + 1;
           break;
         case 'ArrowUp':
-          this.activeItemIndex =
-            this.activeItemIndex < 1
-              ? this.items.length - 1
-              : this.activeItemIndex - 1;
+          this.activeItemIndex = this.activeItemIndex < 1 ? this.items.length - 1 : this.activeItemIndex - 1;
           break;
         case 'Enter':
-          if (
-            this.activeItemIndex > -1 &&
-            this.activeItemIndex < this.items.length
-          ) {
+          if (this.activeItemIndex > -1 && this.activeItemIndex < this.items.length) {
             this.itemSelected(this.items[this.activeItemIndex]);
           }
           break;

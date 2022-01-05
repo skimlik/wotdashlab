@@ -1,48 +1,48 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
-            <span class="link-icon fa fa-home" aria-label="Home"></span>
-            <span class="link-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/accounts" class="nav-link" routerLinkActive="active">
-            <span class="link-icon fa fa-search" aria-label="search accounts"></span>
-            <span class="link-text">Search</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/wgn/servers" routerLinkActive="active">
-            <span class="link-icon fa fa-server" aria-label="Servers"></span>
-            <span class="link-text">Servers</span>
-          </a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <app-search-box
-          class="search-box"
-          dropDirection="bottom-end"
-          placeholder="Search for player"
-          [datasource]="accountSearch"
-          [dropDownWidth]="320"
-          (onShowAllResults)="showAllSearchResults($event)"
-          (onItemSelected)="goToAccountProfile($event)"
+<div class="nav-bar">
+  <div class="nav-bar-left">
+    <div class="nav-bar-links">
+      <div class="nav-bar-link">
+        <a
+          class="nav-link"
+          aria-current="page"
+          routerLinkActive="active"
+          routerLink="/"
+          [routerLinkActiveOptions]="{exact: true}"
         >
-        </app-search-box>
-      </form>
+          <span class="link-icon fa fa-home"></span>
+          <span class="link-text">Home</span>
+        </a>
+      </div>
+      <div class="nav-bar-link">
+        <a routerLink="/accounts" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span class="link-icon fa fa-search"></span>
+          <span class="link-text">Search</span>
+        </a>
+      </div>
+      <div class="nav-bar-link">
+        <a class="nav-link" routerLink="/wgn/servers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span class="link-icon fa fa-server"></span>
+          <span class="link-text">Servers</span>
+        </a>
+      </div>
+      <div class="nav-bar-link" *ngIf="currentUser">
+        <a class="nav-link" [routerLink]="'/accounts/' + currentUser.accountId" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span class="link-icon fa fa-user"></span>
+          <span class="link-text">Profile</span>
+        </a>
+      </div>
     </div>
   </div>
-</nav>
+  <div class="nav-bar-right">
+      <app-search-box
+        class="search-box"
+        dropDirection="bottom-end"
+        placeholder="Search for player"
+        [dataSource]="accountSearch"
+        [dropDownWidth]="320"
+        (onShowAllResults)="showAllSearchResults($event)"
+        (onItemSelected)="goToAccountProfile($event)"
+      >
+      </app-search-box>
+  </div>
+</div>

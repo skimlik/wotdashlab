@@ -1,6 +1,9 @@
 ﻿<div
-  class="search-box-container form-control me-2 search-input"
+  class="search-box-container search-input"
+  [ngClass]="{'drop-down-opened': opened$ | async }"
   [style.maxWidth]="maxWidth ? maxWidth + 'px' : 'auto'"
+  [style.width]="dropDownWidth ? dropDownWidth + 'px' : 'auto'"
+  [style.minWidth]="dropDownWidth ? dropDownWidth + 'px' : 'auto'"
   (window:resize)="resize($event)">
   <input
     type="text"
@@ -18,7 +21,7 @@
 </div>
 
 <div
-  class="drop-down-area shadow rounded bg-white"
+  class="drop-down-area"
   [style.width]="dropDownWidth ? dropDownWidth + 'px' : 'auto'"
   [style.minWidth]="dropDownWidth ? dropDownWidth + 'px' : 'auto'">
 
@@ -48,7 +51,7 @@
 </ng-template>
 
 <ng-template #searchResults let-text>
-  <div class="drop-down-container search-container ms-0 me-0">
+  <div class="drop-down-container search-container">
     <div class="items-area p-0 flex flex-column">
       <div
         class="search-item d-flex flex-nowrap ps-3 m-0 dropdown-item justify-content-between"
@@ -56,11 +59,11 @@
         [ngClass]="{ 'active': activeItemIndex === ix}"
         (click)="itemSelected(item)"
       >
-        <div class="item-icon search-item-icon me-3 ms-0 text-muted">
-          <i class="fa fa-user text-muted fa-1x" aria-hidden="true"></i>
+        <div class="item-icon search-item-icon">
+          <i class="fa fa-user fa-1x" aria-hidden="true"></i>
         </div>
-        <div class="item-name text-primary search-item-text text-truncate">
-          <a class="link-primary">{{item?.name}}</a>
+        <div class="item-name search-item-text">
+          <a class="item-name-link">{{item?.name}}</a>
         </div>
         <div class="item-id text-truncate text-end">
           <a class="link-secondary">{{item?.id}}</a>

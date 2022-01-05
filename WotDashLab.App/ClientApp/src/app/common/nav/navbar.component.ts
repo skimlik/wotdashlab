@@ -25,6 +25,7 @@ export class NavbarComponent implements OnDestroy{
 
   @Input() brand = 'World of Tanks';
   @Input() currentApiName = 'Wot';
+  @Input() currentUser: string;
   @Input()
   set region(value: SupportedRegions) {
     if (this.searchBox) {

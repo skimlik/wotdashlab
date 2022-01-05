@@ -1,18 +1,24 @@
-<app-header
-  [brand]="brand$ | async"
-  [currentApiName]="currentApiName$ | async"
-  [availableRegions]="availableRegions$ | async"
-  [currentRegion]="currentRegion"
-  [currentUser]="currentUser"
-  (onRegionChange)="onRegionChange($event)"
-  (onRequestUserProfile)="profileRequested()"
-  (onLogoffRequested)="logoff()"
->
-</app-header>
-<app-navbar
-  [brand]="brand$ | async"
-  [currentApiName]="currentApiName$ | async"
-  [region]="currentRegion"
->
-</app-navbar>
-<router-outlet></router-outlet>
+<section class="header">
+  <app-header
+    class="header"
+    [brand]="brand$ | async"
+    [currentApiName]="currentApiName$ | async"
+    [availableRegions]="availableRegions$ | async"
+    [currentRegion]="currentRegion"
+    [currentUser]="currentUser"
+    (onRegionChange)="onRegionChange($event)"
+    (onRequestUserProfile)="profileRequested()"
+    (onLogoffRequested)="logoff()"
+  >
+  </app-header>
+  <app-navbar
+    [brand]="brand$ | async"
+    [currentApiName]="currentApiName$ | async"
+    [region]="currentRegion"
+    [currentUser]="currentUser"
+  >
+  </app-navbar>
+</section>
+<section class="main page-content">
+  <router-outlet></router-outlet>
+</section>

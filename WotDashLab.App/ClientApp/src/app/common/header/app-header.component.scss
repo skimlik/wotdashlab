@@ -1,5 +1,11 @@
 ﻿.app-header-container {
-  //margin: 20px 5px;
-  margin-top: 2em;
-  margin-left: 1em;
+  margin: 2em 1em 0;
+
+  .brand-info {
+    flex: 1;
+  }
+
+  .account-info {
+    flex: 0;
+  }
 }

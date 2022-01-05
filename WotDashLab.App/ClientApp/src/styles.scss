@@ -21,6 +21,8 @@ html, body {
 }
 
 .no-mouse-events {
+  -ms-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
   pointer-events: none;
 }

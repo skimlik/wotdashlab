@@ -1,5 +1,5 @@
-﻿<div class="app-header-container clearfix">
-  <div class="pull-left">
+﻿<div class="app-header-container align-horizontally">
+  <div class="brand-info">
     <figure>
       <blockquote class="blockquote">
         <p>{{ brand }}</p>
@@ -9,7 +9,7 @@
       </figcaption>
     </figure>
   </div>
-  <div class="pull-right">
+  <div class="account-info">
     <div class="btn-group" role="group" *ngIf="!isLoggedIn">
       <button class="btn btn-primary" (click)="login()">Login</button>
       <div class="btn-group" role="group">

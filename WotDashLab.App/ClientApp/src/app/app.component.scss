@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.header {
+  flex: 0 0 auto;
+  height: 156px;
+}
+.main {
+  flex: 1 1 auto;
+}
