@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WotDashLab.App", "WotDashLab.App\WotDashLab.App.csproj", "{0FE50821-AE6B-428C-8BF8-A6EFAA00F080}"
 EndProject
@@ -24,10 +24,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{9F01097B-1A2C-4B1E-A54C-96CB23D0E3D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development", "{68D40F27-B121-4E3E-8FCE-47F871FAF1B0}"
-ProjectSection(SolutionItems) = preProject
-	docker-compose.yml = docker-compose.yml
-	Dockerfile = Dockerfile
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
