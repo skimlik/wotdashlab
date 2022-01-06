@@ -10,28 +10,16 @@
     </figure>
   </div>
   <div class="account-info">
-    <div class="btn-group" role="group" *ngIf="!isLoggedIn">
-      <button class="btn btn-primary" (click)="login()">Login</button>
-      <div class="btn-group" role="group">
-        <button id="selectRegionBtn" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          {{getRegionName(currentRegion)}}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="selectRegionBtn">
-          <li *ngFor="let r of availableRegions; let ix = index;">
-            <a class="dropdown-item" (click)="requestRegion(ix)">{{getRegionName(r)}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="dropdown" *ngIf="isLoggedIn">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        {{currentUser.nickname}}
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="javascript:void(0)" (click)="onRequestUserProfile.next()">Profile</a></li>
-        <li><a class="dropdown-item" href="javascript:void(0)" (click)="onLogoffRequested.next()">Log out</a></li>
-      </ul>
-    </div>
+    <app-drop-down-button
+      *ngIf="!isLoggedIn"
+      text="Login"
+      [selectedItem]="{ id: currentRegion, name: currentRegion }"
+      [dropDownItems]="availableRegionItems"
+      [addonWidth]="70"
+      (itemSelected)="requestRegion($event.id)"
+      (clicked)="login()"
+    >
+    </app-drop-down-button>
+    <button *ngIf="isLoggedIn" class="button" (click)="onLogoffRequested.next()">Logoff</button>
   </div>
 </div>

@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { SearchBoxComponent } from '../search-box/search-box.component';
 import { SupportedRegions } from "../constants/string-constraints";
+import { IAuthInfo } from "../../core/infrastructure/authentication/auth-info";
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +26,7 @@ export class NavbarComponent implements OnDestroy{
 
   @Input() brand = 'World of Tanks';
   @Input() currentApiName = 'Wot';
-  @Input() currentUser: string;
+  @Input() currentUser: IAuthInfo;
   @Input()
   set region(value: SupportedRegions) {
     if (this.searchBox) {

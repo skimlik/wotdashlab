@@ -10,9 +10,11 @@ import { UnixDatePipe } from './unix-date.pipe';
 import { PieChartService } from "./charts/pie/pie-chart.service";
 import { SecondsToTimePipe } from "./seconds-to-time.pipe";
 import { NavComponent } from "./nav/nav.component";
+import { DropDownButtonComponent } from "./buttons/drop-down-button.component";
 
 const toExport = [
   SearchBoxComponent,
+  DropDownButtonComponent,
   NavbarComponent,
   NavComponent,
   AppHeaderComponent,

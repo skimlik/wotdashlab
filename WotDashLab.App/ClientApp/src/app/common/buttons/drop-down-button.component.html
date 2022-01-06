@@ -1,0 +1,15 @@
+<div class="drop-down-button-container">
+  <div class="buttons">
+    <button class="click-button" *ngIf="!dropDownOnly" (click)="onClick()">{{text}}</button>
+    <button class="click-button button-addon" (click)="onAddonClick()" [style.width]="addonWidth ? (addonWidth + 'px') : 'auto'">
+      <span>{{selectedItem.name | uppercase}}</span>
+    </button>
+  </div>
+  <div class="drop-down-list">
+    <div class="drop-down-item" *ngFor="let item of dropDownItems" (click)="onSelect(item)">
+      <a href="javascript:void(0)" class="link drop-down-item-link">
+          <span class="drop-down-item-name">{{item?.name | uppercase}}</span>
+      </a>
+    </div>
+  </div>
+</div>

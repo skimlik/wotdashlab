@@ -68,6 +68,7 @@ export class AppComponent implements OnInit, OnDestroy {
           accessToken,
         };
         this.localStorage.setValue("Auth", JSON.stringify(authInfo));
+        this.removeAuthInfoQueryString();
       }
     })
   }
@@ -91,9 +92,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logoff() {
     this.localStorage.removeValue('Auth');
+    this.removeAuthInfoQueryString();
   }
 
   get currentUser(): IAuthInfo {
     return this.localStorage.getAuth();
+  }
+
+  private removeAuthInfoQueryString(): void {
+    this.router.navigate([], {
+      relativeTo: this.route
+    });
   }
 }

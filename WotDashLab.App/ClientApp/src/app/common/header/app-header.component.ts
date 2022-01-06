@@ -6,6 +6,7 @@ import { NavItem } from "../nav/nav-item";
 import { SupportedRegions } from "../constants/string-constraints";
 import { ActivatedRoute } from "@angular/router";
 import { tap } from "rxjs/operators";
+import { DropDownItem } from "../buttons/drop-down-item";
 
 @Component({
   selector: 'app-header',
@@ -104,9 +105,17 @@ export class AppHeaderComponent implements OnInit {
     }
   }
 
-  requestRegion(ix: number) {
-    if (this.availableRegions.length > ix && ix > -1) {
-      this.onRegionChange.next(this.availableRegions[ix]);
+  requestRegion(name: string): void {
+    const reg = this.availableRegions.find(r => r.toUpperCase() === name.toUpperCase());
+    if (reg) {
+      this.onRegionChange.next(reg);
     }
+  }
+
+  get availableRegionItems(): DropDownItem[] {
+    return this.availableRegions.map((r) => ({
+      id: r,
+      name: r,
+    }));
   }
 }
