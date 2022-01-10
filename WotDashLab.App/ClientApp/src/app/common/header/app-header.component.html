@@ -15,11 +15,22 @@
       text="Login"
       [selectedItem]="{ id: currentRegion, name: currentRegion }"
       [dropDownItems]="availableRegionItems"
-      [addonWidth]="70"
       (itemSelected)="requestRegion($event.id)"
       (clicked)="login()"
     >
     </app-drop-down-button>
-    <button *ngIf="isLoggedIn" class="button" (click)="onLogoffRequested.next()">Logoff</button>
+    <app-drop-down-button
+      *ngIf="isLoggedIn"
+      [text]="currentUser.nickname"
+      [dropDownItems]="userActions"
+      [addonWidth]="30"
+      [addonTemplateRef]="userActionsTemplateRef"
+    ></app-drop-down-button>
   </div>
 </div>
+
+<ng-template #userActionsTemplateRef>
+  <div>
+    <i class="fa fa-cog"></i>
+  </div>
+</ng-template>

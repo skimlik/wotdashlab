@@ -1,4 +1,6 @@
 @import "~/src/assets/variables";
+@import "~/src/assets/mixins";
+@import "~/src/assets/utilities";
 
 @mixin focusShadow() {
   box-shadow: -1px -1px 3px 1px lighten($mainColor, 10),
@@ -24,16 +26,18 @@
 
   .buttons {
     position: relative;
+    display: flex;
+    justify-content: center;
+
     .click-button {
       outline: none;
+      cursor: pointer;
       box-sizing: border-box;
       background: $mainColor;
       height: 2.5em;
       color: $bgColor;
       border: none;
-      cursor: pointer;
-      padding-right: 12px;
-      padding-left: 12px;
+      padding: 0 12px;
       margin-right: 0;
 
       &:hover {
@@ -42,24 +46,15 @@
     }
 
     .button-addon {
-      margin-left: -4px;
-      border-left: 1px solid lighten($mainColor, 20);
-      padding-left: 6px;
-      padding-right: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      span {
-        &::after {
-          display: inline-block;
-          position: absolute;
-          top: 0;
-          margin-left: .6em;
-          font-family: "FontAwesome", sans-serif;
-          font-weight: 900;
-          content: '\f0dd';
-          margin-top: 0;
-          margin-right: .6em;
-          transform: translateY(33%);
-        }
+      border-left: 1px solid lighten($mainColor, 20);
+      padding: 0 6px;
+
+      .button-addon-text ~ .fa{
+        margin-left: 0.6em;
       }
     }
   }
@@ -71,19 +66,29 @@
   border: 1px solid $mainColor;
   background: $bgColor;
   position: absolute;
-  left: 0;
-  top: 2.51em;
+  inset: 2.51em auto auto 0;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
   border-radius: 0.25em;
   padding: 0;
   width: 100%;
 
   .drop-down-item {
+    @include noUserSelect();
     padding: .5em 1.6em .5em;
     margin: 0;
     overflow-x: hidden;
     text-overflow: ellipsis;
     user-select: none;
+    cursor: pointer;
+
+
+    &.active {
+      background-color: $mainColor;
+
+      .link {
+        color: $bgColor;
+      }
+    }
 
     .drop-down-item-link {
       overflow-x: hidden;
@@ -92,6 +97,10 @@
 
     &:hover {
       background: #ddd;
+
+      .link {
+        color: $mainColor;
+      }
     }
   }
 }

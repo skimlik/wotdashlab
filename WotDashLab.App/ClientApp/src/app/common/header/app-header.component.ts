@@ -1,4 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+﻿import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/infrastructure/authentication/authentication.service';
 import { DefaultRegion } from '../../core/constants/default-settings';
 import { IAuthInfo } from '../../core/infrastructure/authentication/auth-info';
@@ -30,6 +30,29 @@ export class AppHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService
   ) {
+  }
+
+  get isLoggedIn(): boolean {
+    return !!this.currentUser;
+  }
+
+  get availableRegionItems(): DropDownItem[] {
+    return this.availableRegions.map((r) => ({
+      id: r,
+      name: r.toUpperCase(),
+    }));
+  }
+
+  get userActions(): DropDownItem[] {
+    const self = this;
+    return [
+      {
+        id: 'logoff',
+        name: 'Log off',
+        noSelect: true,
+        command: () => self.onLogoffRequested.next(),
+      }
+    ];
   }
 
   ngOnInit(): void {
@@ -88,10 +111,6 @@ export class AppHeaderComponent implements OnInit {
     ];
   }
 
-  get isLoggedIn(): boolean {
-    return !!this.currentUser;
-  }
-
   getRegionName(r: string): string {
     switch (r.toLowerCase()) {
       case 'ru':
@@ -110,12 +129,5 @@ export class AppHeaderComponent implements OnInit {
     if (reg) {
       this.onRegionChange.next(reg);
     }
-  }
-
-  get availableRegionItems(): DropDownItem[] {
-    return this.availableRegions.map((r) => ({
-      id: r,
-      name: r,
-    }));
   }
 }

@@ -6,7 +6,8 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output
+  Output,
+  TemplateRef
 } from '@angular/core';
 import { DropDownItem } from "./drop-down-item";
 import { DomEvents } from "../../core/services/dom-events.service";
@@ -19,21 +20,27 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ['drop-down-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class DropDownButtonComponent implements OnInit, OnDestroy{
-  private _host: HTMLDivElement;
-  private _dispose$ = new Subject<void>();
-
+export class DropDownButtonComponent implements OnInit, OnDestroy {
   @Input() text: string;
   @Input() selectedItem: DropDownItem;
   @Input() dropDownItems: DropDownItem[] = [];
   @Input() addonWidth: number = NaN;
   @Input() dropDownOnly = false;
-
+  @Input() addonTemplateRef: TemplateRef<any>;
   @Output() itemSelected = new EventEmitter<DropDownItem>();
   @Output() clicked = new EventEmitter<void>();
+  private _host: HTMLDivElement;
+  private _dispose$ = new Subject<void>();
 
   constructor(private elementRef: ElementRef, private domEvents: DomEvents) {
+  }
+
+  get selectedItemText(): string {
+    return this.selectedItem?.name || '';
+  }
+
+  isActiveItem(item: DropDownItem): boolean {
+    return item?.id === this.selectedItem?.id;
   }
 
   ngOnInit(): void {
@@ -57,9 +64,14 @@ export class DropDownButtonComponent implements OnInit, OnDestroy{
 
   onSelect(item: DropDownItem): void {
     if (item) {
-      this.selectedItem = item;
+      if (!item.noSelect) {
+        this.selectedItem = item;
+        this.itemSelected.emit(item);
+      }
+      if (item.command) {
+        item.command();
+      }
       this.close();
-      this.itemSelected.emit(item);
     }
   }
 
