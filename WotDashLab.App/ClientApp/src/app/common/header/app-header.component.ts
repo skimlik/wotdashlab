@@ -1,20 +1,17 @@
-﻿import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AuthenticationService } from 'src/app/core/infrastructure/authentication/authentication.service';
-import { DefaultRegion } from '../../core/constants/default-settings';
-import { IAuthInfo } from '../../core/infrastructure/authentication/auth-info';
-import { NavItem } from "../nav/nav-item";
-import { SupportedRegions } from "../constants/string-constraints";
-import { ActivatedRoute } from "@angular/router";
-import { tap } from "rxjs/operators";
-import { DropDownItem } from "../buttons/drop-down-item";
+﻿import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AuthenticationService} from 'src/app/core/infrastructure/authentication/authentication.service';
+import {DefaultRegion} from '../../core/constants/default-settings';
+import {IAuthInfo} from '../../core/infrastructure/authentication/auth-info';
+import {NavItem} from '../nav/nav-item';
+import {SupportedRegions} from '../constants/string-constraints';
+import {DropDownItem} from '../buttons/drop-down-item';
 
 @Component({
   selector: 'app-header',
   templateUrl: 'app-header.component.html',
   styleUrls: ['app-header.component.scss'],
 })
-
-export class AppHeaderComponent implements OnInit {
+export class AppHeaderComponent {
   @Input() currentApiName = 'World of Tanks';
   @Input() currentUser: IAuthInfo;
   @Input() brand = 'WoT Dashboard';
@@ -26,11 +23,7 @@ export class AppHeaderComponent implements OnInit {
 
   navItems: NavItem[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private authenticationService: AuthenticationService
-  ) {
-  }
+  constructor(private authenticationService: AuthenticationService) {}
 
   get isLoggedIn(): boolean {
     return !!this.currentUser;
@@ -51,14 +44,8 @@ export class AppHeaderComponent implements OnInit {
         name: 'Log off',
         noSelect: true,
         command: () => self.onLogoffRequested.next(),
-      }
+      },
     ];
-  }
-
-  ngOnInit(): void {
-    this.route.url.pipe(tap(segment => {
-      console.log(segment);
-    }));
   }
 
   login(): void {
@@ -83,7 +70,7 @@ export class AppHeaderComponent implements OnInit {
   }
 
   requestRegion(name: string): void {
-    const reg = this.availableRegions.find(r => r.toUpperCase() === name.toUpperCase());
+    const reg = this.availableRegions.find((r) => r.toUpperCase() === name.toUpperCase());
     if (reg) {
       this.onRegionChange.next(reg);
     }

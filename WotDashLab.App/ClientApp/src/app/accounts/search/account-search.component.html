@@ -1,48 +1,47 @@
-﻿<div class="account-search-container pt-2 full-height">
-  <div class="row">
-    <div class="col-md-6 col-sm-9 col-xs-12">
-      <form class="d-flex">
-        <input class="form-control me-2" name="searchText" type="search" placeholder="Search" [(ngModel)]="searchText" aria-label="Search">
-        <button (click)="search()" [disabled]="searchText?.length < 3" class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+﻿<div class="account-search-container">
+  <div class="header-container">
+    <input
+      class="search-textbox app-textbox"
+      name="searchText"
+      type="search"
+      placeholder="Search"
+      [(ngModel)]="searchText"
+      aria-label="Search"
+    />
+    <button (click)="search()" [disabled]="searchText?.length < 3" class="app-button">
+      Search
+    </button>
   </div>
-  <div class="row full-height">
-    <div class="col-xl-12 mt-2">
-      <div class="grid-container">
-        <div class="grid-row grid-header-row">
-          <div class="grid-cell grid-header-cell account-cell">Account #</div>
-          <div class="grid-cell grid-header-cell name-cell">Nickname</div>
-          <div class="grid-cell grid-header-cell createdAt-cell">Created At</div>
-          <div class="grid-cell grid-header-cell games-cell">Registered games</div>
-        </div>
-        <ng-container *ngIf="this.rowData$ | async as data">
-          <ng-container *ngIf="data.length > 0; else noRows">
-            <div class="grid-row" *ngFor="let account of data">
-              <div class="grid-cell account-cell">{{account.account_id}}</div>
-              <div class="grid-cell name-cell">
-                <div class="account-name-action-cell">
-                  <div class="action-text">{{account.nickname}}</div>
-                  <span
-                    class="action-icon fa fa-address-book"
-                    aria-hidden="true"
-                    [ngClass]="{'inactive': !isWotProfile(account.games)}"
-                    (click)="openProfile(account.account_id)"
-                  >
-                  </span>
-                </div>
-              </div>
-              <div class="grid-cell createdAt-cell">{{account.created_at | unixDate | date:'short'}}</div>
-              <div class="grid-cell games-cell">{{resolveGameName(account.games)}}</div>
-            </div>
-          </ng-container>
-        </ng-container>
-      </div>
+  <div class="grid-container">
+    <div class="grid-row grid-header-row">
+      <div class="grid-cell grid-header-cell account-cell">Account #</div>
+      <div class="grid-cell grid-header-cell name-cell">Nickname</div>
+      <div class="grid-cell grid-header-cell createdAt-cell">Created At</div>
+      <div class="grid-cell grid-header-cell games-cell">Registered games</div>
     </div>
+    <ng-container *ngIf="this.rowData$ | async as data">
+      <ng-container *ngIf="data.length > 0; else noRows">
+        <div class="grid-row" *ngFor="let account of data">
+          <div class="grid-cell account-cell">{{ account.account_id }}</div>
+          <div class="grid-cell name-cell">
+            <div class="account-name-action-cell">
+              <div class="action-text">{{ account.nickname }}</div>
+              <span
+                class="action-icon fa fa-address-book"
+                aria-hidden="true"
+                [ngClass]="{inactive: !isWotProfile(account.games)}"
+                (click)="openProfile(account.account_id)"
+              >
+              </span>
+            </div>
+          </div>
+          <div class="grid-cell createdAt-cell">{{ account.created_at | unixDate | date: 'short' }}</div>
+          <div class="grid-cell games-cell">{{ resolveGameName(account.games) }}</div>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
 <ng-template #noRows>
-  <div class="no-rows-overlay">
-    No rows found, please refine your search.
-  </div>
+  <div class="no-rows-overlay">No rows found, please refine your search.</div>
 </ng-template>

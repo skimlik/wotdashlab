@@ -48,7 +48,7 @@ export class NavbarComponent implements OnDestroy, OnInit {
   private _disposed$ = new Subject<void>();
 
   constructor(
-    private searchService: WotAccountSearchService,
+    searchService: WotAccountSearchService,
     private authService: AuthenticationService,
     private router: Router) {
     this.accountSearch = {
@@ -106,7 +106,6 @@ export class NavbarComponent implements OnDestroy, OnInit {
   }
 
   private initializeNavBarItems(): NavItem[] {
-    console.log(this.accountId);
     return [{
       name: 'Home',
       url: '/',

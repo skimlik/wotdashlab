@@ -8,16 +8,17 @@
 @mixin focusShadow() {
   border: 1px solid $mainColor;
   box-shadow: -1px -1px 3px 1px lighten($mainColor, 10),
-  0 1px 3px 1px lighten($mainColor, 10),
-  1px 0 3px 1px lighten($mainColor, 10);
+    0 1px 3px 1px lighten($mainColor, 10),
+    1px 0 3px 1px lighten($mainColor, 10);
 }
 
-.button {
+.app-button {
   @include colorizeButton($mainColor, $bgColor);
   outline: none;
   box-sizing: border-box;
   background: $mainColor;
-  height: 2.5em;
+  height: $control-height;
+  line-height: 24px;
   font-size: .8em;
   color: $bgColor;
   border: none;
@@ -25,6 +26,7 @@
   padding-right: 12px;
   padding-left: 12px;
   margin-right: 0;
+  border-radius: 3px;
 
   &:hover {
     background-color: darken($mainColor, 10);
@@ -32,6 +34,21 @@
 
   &:focus {
     background: lighten($mainColor, 5);
+    @include focusShadow();
+  }
+}
+
+.app-textbox {
+  height: $control-height;
+  box-sizing: border-box;
+  border: 1px solid $mainColor;
+  outline: none;
+  padding: .3rem;
+  line-height: 24px;
+  margin: 0;
+  border-radius: 3px;
+
+  &:focus {
     @include focusShadow();
   }
 }
