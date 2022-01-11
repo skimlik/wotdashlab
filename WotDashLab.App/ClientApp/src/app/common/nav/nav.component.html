@@ -1,11 +1,12 @@
 <div class="navigation">
   <div class="list">
-    <ng-container *ngFor="let item of items">
+    <ng-container *ngFor="let item of items; let ix = index">
       <a
         class="list-item"
-        *ngIf="!hide(item) && item?.url"
-        routerLinkActive="active"
-        [routerLink]="item.url"
+        *ngIf="!hide(item) && (item?.url || item?.getUrl)"
+        [attr.data-index]="ix"
+        [ngClass]="{'active': item.active}"
+        (click)="onNavigationClick(item, ix)"
       >
         <div class="list-item-content">
           <span [ngClass]="item.iconClass" class="icon"></span>
@@ -14,7 +15,9 @@
       </a>
       <a
         class="list-item"
-        *ngIf="!hide(item) && !item?.url"
+        *ngIf="!hide(item) && !item?.url && !item?.getUrl"
+        [attr.data-index]="ix"
+        [ngClass]="{'active': item.active}"
         (click)="item?.command()"
       >
         <div class="list-item-content">

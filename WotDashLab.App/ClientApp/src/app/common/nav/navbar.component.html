@@ -1,48 +1,17 @@
 <div class="nav-bar">
-  <div class="nav-bar-left">
-    <div class="nav-bar-links">
-      <div class="nav-bar-link">
-        <a
-          class="nav-link"
-          aria-current="page"
-          routerLinkActive="active"
-          routerLink="/"
-          [routerLinkActiveOptions]="{exact: true}"
-        >
-          <span class="link-icon fa fa-home"></span>
-          <span class="link-text">Home</span>
-        </a>
-      </div>
-      <div class="nav-bar-link">
-        <a routerLink="/accounts" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span class="link-icon fa fa-search"></span>
-          <span class="link-text">Search</span>
-        </a>
-      </div>
-      <div class="nav-bar-link">
-        <a class="nav-link" routerLink="/wgn/servers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span class="link-icon fa fa-server"></span>
-          <span class="link-text">Servers</span>
-        </a>
-      </div>
-      <div class="nav-bar-link" *ngIf="currentUser">
-        <a class="nav-link" [routerLink]="'/accounts/' + currentUser.accountId" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span class="link-icon fa fa-user"></span>
-          <span class="link-text">Profile</span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="nav-bar-right">
-      <app-search-box
-        class="search-box"
-        dropDirection="bottom-end"
-        placeholder="Search for player"
-        [dataSource]="accountSearch"
-        [dropDownWidth]="320"
-        (onShowAllResults)="showAllSearchResults($event)"
-        (onItemSelected)="goToAccountProfile($event)"
-      >
-      </app-search-box>
+  <app-nav [items]="navBarItems"></app-nav>
+  <div class="right-nav">
+    <div class="top-ruler"></div>
+    <app-search-box
+      class="search-box"
+      dropDirection="bottom-end"
+      placeholder="Search for player"
+      [dataSource]="accountSearch"
+      [dropDownWidth]="320"
+      (onShowAllResults)="showAllSearchResults($event)"
+      (onItemSelected)="goToAccountProfile($event)"
+    >
+    </app-search-box>
+    <div class="top-ruler"></div>
   </div>
 </div>

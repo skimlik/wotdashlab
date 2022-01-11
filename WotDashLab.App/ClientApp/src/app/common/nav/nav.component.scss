@@ -133,26 +133,10 @@
   }
 }
 
-.navigation .list .list-item:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(60px * 0));
+.navigation .list .list-item ~ .indicator {
+  opacity: 0;
 }
 
-.navigation .list .list-item:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(60px * 1));
-  opacity: 1;
-}
-
-.navigation .list .list-item:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(60px * 2));
-  opacity: 1;
-}
-
-.navigation .list .list-item:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(60px * 3));
-  opacity: 1;
-}
-
-.navigation .list .list-item:nth-child(5).active ~ .indicator {
-  transform: translateX(calc(60px * 4));
+.navigation .list .list-item.active ~ .indicator {
   opacity: 1;
 }

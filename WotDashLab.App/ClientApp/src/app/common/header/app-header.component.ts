@@ -59,7 +59,6 @@ export class AppHeaderComponent implements OnInit {
     this.route.url.pipe(tap(segment => {
       console.log(segment);
     }));
-    this.navItems = this.getNavItems();
   }
 
   login(): void {
@@ -68,47 +67,6 @@ export class AppHeaderComponent implements OnInit {
 
   getProfileAccountId(): number {
     return this.currentUser?.accountId;
-  }
-
-  getNavItems(): NavItem[] {
-    return [
-      {
-        name: 'Home',
-        iconClass: 'fa fa-home',
-        url: '/',
-        routerLinkActiveOptions: { exact: true },
-      },
-      {
-        name: 'Servers',
-        iconClass: 'fa fa-server',
-        url: '/wgn/servers',
-        routerLinkActiveOptions: {
-          paths: "exact",
-          queryParams: 'subset',
-          matrixParams: 'ignored',
-          fragment: "ignored"
-        },
-      },
-      {
-        name: 'Search',
-        iconClass: 'fa fa-search',
-        url: '/accounts',
-        routerLinkActiveOptions: { exact: true },
-      },
-      {
-        name: 'Profile',
-        iconClass: 'fa fa-user',
-        url: `/accounts/${this.getProfileAccountId()}`,
-        hide: () => !this.isLoggedIn,
-        routerLinkActiveOptions: { exact: true },
-      },
-      {
-        name: 'Sign-in',
-        iconClass: 'fa fa-sign-in',
-        command: () => this.login(),
-        hide: () => this.isLoggedIn
-      },
-    ];
   }
 
   getRegionName(r: string): string {

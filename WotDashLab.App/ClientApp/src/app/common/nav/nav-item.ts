@@ -4,14 +4,8 @@ export interface NavItem {
   name: string;
   iconClass: string;
   url?: string;
-  routerLinkActiveOptions?: {
-    exact: boolean;
-  } | {
-    matrixParams: 'exact' | 'subset' | 'ignored'
-    queryParams: 'exact' | 'subset' | 'ignored'
-    paths: 'exact' | 'subset'
-    fragment: 'exact' | 'ignored'
-  };
+  getUrl?: () => string;
+  active?: boolean;
   hide?: () => boolean;
   command?: () => void;
 }

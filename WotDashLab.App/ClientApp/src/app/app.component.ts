@@ -10,11 +10,8 @@ import { ICoreState } from './core/store/core.state';
 import { LocalStorageService } from './core/infrastructure/local-storage.service';
 import { DefaultRegion } from './core/constants/default-settings';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import { IAuthInfo } from './core/infrastructure/authentication/auth-info';
-import { activeAccountProfileSelector } from "./accounts/store/profile";
-import { IAccountProfileState } from "./accounts/store/profile/account-profile.state";
-import { IAccountsState } from "./accounts/store/accounts-state";
 import { SupportedRegions } from "./common/constants/string-constraints";
 
 @Component({
