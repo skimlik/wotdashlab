@@ -5,7 +5,8 @@
       name="searchText"
       type="search"
       placeholder="Search"
-      [(ngModel)]="searchText"
+      [ngModel]="searchText"
+      (ngModelChange)="onTextChange($event)"
       aria-label="Search"
     />
     <button (click)="search()" [disabled]="searchText?.length < 3" class="app-button">

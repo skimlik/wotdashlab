@@ -49,6 +49,10 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
     this.store.dispatch(fromActions.createSearch({ searchTerm: this.searchText }));
   }
 
+  onTextChange(text: string): void {
+    this.store.dispatch(fromActions.setSearchText({ searchTerm: text }));
+  }
+
   openProfile(accountId: number): void {
     this.router.navigate(['accounts', accountId]);
   }
