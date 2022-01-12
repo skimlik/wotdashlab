@@ -1,24 +1,21 @@
 @import "./variables";
+@import "./mixins.scss";
 
 @mixin colorizeButton($clr, $bg) {
   background: $bg;
   color: $clr;
 }
 
-@mixin focusShadow() {
-  border: 1px solid $mainColor;
-  box-shadow: -1px -1px 3px 1px lighten($mainColor, 10),
-    0 1px 3px 1px lighten($mainColor, 10),
-    1px 0 3px 1px lighten($mainColor, 10);
-}
-
+// Buttons
 .app-button {
+  @include noUserSelect();
   @include colorizeButton($mainColor, $bgColor);
+  display: inline-block;
   outline: none;
   box-sizing: border-box;
   background: $mainColor;
   height: $control-height;
-  line-height: 24px;
+  line-height: 2.4rem;
   font-size: .8em;
   color: $bgColor;
   border: none;
@@ -27,18 +24,34 @@
   padding-left: 12px;
   margin-right: 0;
   border-radius: 3px;
+  text-decoration: none;
+  vertical-align: middle;
 
   &:hover {
     background-color: darken($mainColor, 10);
+    color: $bgColor;
   }
 
   &:focus {
     background: lighten($mainColor, 5);
     @include focusShadow();
   }
+
+  &:disabled {
+    background-color: $bs-gray-light;
+    color: $bs-gray-dark;
+    cursor: not-allowed;
+  }
+
+  &.invert {
+    background: $bgColor;
+    color: $mainColor;
+    border: 1px solid $mainColor;
+  }
 }
 
-.app-textbox {
+// text-boxes
+.app-text-box {
   height: $control-height;
   box-sizing: border-box;
   border: 1px solid $mainColor;
@@ -51,8 +64,33 @@
   &:focus {
     @include focusShadow();
   }
+
+  &:disabled {
+    border: 1px solid $bs-gray-dark;
+    background-color: $bs-gray-light;
+    color: $bs-gray-dark;
+    @include noUserSelect();
+  }
 }
 
+// cards
+.sticker {
+  border: 1px solid $accentColor;
+  box-shadow: 3px 3px 5px $bs-light;
+  padding: 1em;
+
+  .sticker-body {
+    .sticker-title {
+      display: block;
+      margin-bottom: .5rem;
+      color: #000;
+      font-size: 1.25em;
+      font-weight: 500;
+    }
+  }
+}
+
+// utilities
 .muted {
   color: $muted;
 }
