@@ -1,9 +1,11 @@
 ﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, take, takeUntil } from 'rxjs/operators';
-import { BehaviorSubject, of, Subject } from 'rxjs';
-import { IWgnAccountSearchResult } from '../account';
-import { WgnAccountSearchService } from "./wgn-account-search.service";
+import { filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { IAccountsState } from '../store/accounts-state';
+import { select, Store } from '@ngrx/store';
+import * as fromActions from '../store/search/account-search.actions';
+import { accountSearchExpressionSelector, accountSearchResultSelector } from '../store/search';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'account-search',
@@ -12,14 +14,15 @@ import { WgnAccountSearchService } from "./wgn-account-search.service";
 })
 export class AccountSearchComponent implements OnInit, OnDestroy {
   private _disposed$ = new Subject<void>();
+  private _savedSearchText$ = this.store.pipe(select(accountSearchExpressionSelector));
 
   searchText = '';
-  rowData$ = new BehaviorSubject<IWgnAccountSearchResult[]>([]);
+  rowData$ = this.store.pipe(select(accountSearchResultSelector));
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private searchService: WgnAccountSearchService,
+    private store: Store<IAccountsState>
   ) {
   }
 
@@ -27,26 +30,23 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
     this.route.queryParamMap
       .pipe(
         map((q) => q.get('search')),
+        filter((text) => !!text),
         takeUntil(this._disposed$)
-      )
-      .subscribe((text) => (this.searchText = text));
+      ).subscribe((searchTerm) => {
+        this.store.dispatch(fromActions.setSearchText({ searchTerm }));
+        this.store.dispatch(fromActions.createSearch({ searchTerm }));
+      });
+
+    this._savedSearchText$.pipe(takeUntil(this._disposed$)).subscribe((text) => this.searchText = text);
   }
 
   ngOnDestroy(): void {
     this._disposed$.next();
     this._disposed$.complete();
-    this.rowData$.complete();
   }
 
-  search() {
-    const search$ = this.searchText
-      ? this.searchService.searchAll({
-        search: this.searchText,
-        type: this.searchText.indexOf(',') > -1 ? 'exact' : 'startswith'
-      }).pipe(take(1))
-      : of([]);
-
-    search$.subscribe(data => this.rowData$.next(data));
+  search(): void {
+    this.store.dispatch(fromActions.createSearch({ searchTerm: this.searchText }));
   }
 
   openProfile(accountId: number): void {
@@ -57,7 +57,7 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
     return games?.some(g => g === 'wot') || false;
   }
 
-  resolveGameName(value: string[]) {
+  resolveGameName(value: string[]): string {
     const values = value?.map(p => {
       switch (p) {
         case 'wot':
@@ -75,7 +75,8 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
         default:
           return p;
       }
-    })
-    return values?.join(', ')
+    });
+
+    return values?.join(', ');
   }
 }

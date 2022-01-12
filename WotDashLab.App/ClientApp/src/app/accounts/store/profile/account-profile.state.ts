@@ -19,7 +19,7 @@ export interface ITankShortInfo {
     smallIcon: string;
     contourIcon: string;
     bigIcon: string;
-  }
+  };
 }
 
 export interface IAccountProfileState {

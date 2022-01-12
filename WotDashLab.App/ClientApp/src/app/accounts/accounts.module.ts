@@ -24,6 +24,7 @@ import { AccountFragsRatioChartComponent } from "./charts/frags-ratio-chart/acco
 import { AccountAttributesComponent } from "./account-attributes.component";
 import { UnixDatePipe } from "../common/unix-date.pipe";
 import { AccountStatisticsCardComponent } from "./cards/account-statistics/account-statistics-card.component";
+import { AccountSearchEffects } from './store/search/account-search.effects';
 
 const routes: Routes = [
   {
@@ -49,7 +50,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([AccountProfileEffects]),
+    EffectsModule.forFeature([AccountProfileEffects, AccountSearchEffects]),
     FormsModule,
     AppCommonModule,
   ],
