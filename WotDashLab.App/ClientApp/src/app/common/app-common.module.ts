@@ -7,10 +7,11 @@ import { AppHeaderComponent } from './header/app-header.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UnixDatePipe } from './unix-date.pipe';
-import { PieChartService } from "./charts/pie/pie-chart.service";
-import { SecondsToTimePipe } from "./seconds-to-time.pipe";
-import { NavComponent } from "./nav/nav.component";
-import { DropDownButtonComponent } from "./buttons/drop-down-button.component";
+import { PieChartService } from './charts/pie/pie-chart.service';
+import { SecondsToTimePipe } from './seconds-to-time.pipe';
+import { NavComponent } from './nav/nav.component';
+import { DropDownButtonComponent } from './buttons/drop-down-button.component';
+import { TabControlComponent } from './tab-control/tab-control.component';
 
 const toExport = [
   SearchBoxComponent,
@@ -20,6 +21,7 @@ const toExport = [
   AppHeaderComponent,
   UnixDatePipe,
   SecondsToTimePipe,
+  TabControlComponent,
 ];
 
 @NgModule({

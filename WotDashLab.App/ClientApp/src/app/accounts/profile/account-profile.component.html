@@ -1,19 +1,25 @@
-﻿<div class="account-profile-container pt-2 full-height" *ngIf="selectedProfile$ | async as profile">
-  <div class="profiles-attributes">
-    <app-account-attributes [profile]="profile"></app-account-attributes>
-  </div>
-  <div class="widget-row">
-    <div class="widget-placeholder">
-      <app-account-info-card [profile]="profile"></app-account-info-card>
+﻿<div class="account-profile-container" *ngIf="selectedProfile$ | async as profile">
+  <app-tabs [tabs]="tabs" [activeTab]="activeTab" (selected)="onTabSelected($event)"></app-tabs>
+
+  <div class="account-profile-content" [ngSwitch]="activeTab.key">
+    <div class="profile-content" *ngSwitchCase="'profile'">
+      <div class="profiles-attributes">
+        <app-account-attributes [profile]="profile"></app-account-attributes>
+      </div>
+      <div class="widget-row">
+        <div class="widget-placeholder">
+          <app-account-info-card [profile]="profile"></app-account-info-card>
+        </div>
+        <div class="widget-placeholder">
+          <app-account-brief-stat-card [profile]="profile"></app-account-brief-stat-card>
+        </div>
+        <div class="widget-placeholder">
+          <app-max-results-card [profile]="profile"></app-max-results-card>
+        </div>
+      </div>
+      <div class="profile-charts">
+        <app-account-profile-info-graph-card [profile]="profile"></app-account-profile-info-graph-card>
+      </div>
     </div>
-    <div class="widget-placeholder">
-      <app-account-brief-stat-card [profile]="profile"></app-account-brief-stat-card>
-    </div>
-    <div class="widget-placeholder">
-      <app-max-results-card [profile]="profile"></app-max-results-card>
-    </div>
-  </div>
-  <div class="profile-charts">
-    <app-account-profile-info-graph-card [profile]="profile"></app-account-profile-info-graph-card>
   </div>
 </div>

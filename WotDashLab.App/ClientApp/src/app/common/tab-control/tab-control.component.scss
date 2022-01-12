@@ -1,0 +1,25 @@
+@import "~/src/assets/variables";
+@import "~/src/assets/utilities";
+
+.tab-control-container {
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid $mainColor;
+
+  .tab {
+    @include noUserSelect();
+    color: $mainColor;
+    padding: 6px 12px 6px 0;
+    cursor: pointer;
+
+    &.active {
+      border-bottom: 3px solid $mainColor;
+      font-weight: 500;
+    }
+
+    &:disabled {
+      color: $bs-gray;
+      cursor: not-allowed;
+    }
+  }
+}

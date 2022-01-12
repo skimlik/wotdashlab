@@ -1,0 +1,13 @@
+<div class="tab-control-container">
+  <ng-container *ngFor="let tab of tabs; let ix = index">
+    <div
+      class="tab"
+      [attr.data-key]="tab.key"
+      [attr.data-index]="ix"
+      (click)="onTabClick(tab)"
+      [ngClass]="{'active': isActive(tab)}"
+    >
+      <span class="tab-text">{{tab.name}}</span>
+    </div>
+  </ng-container>
+</div>
