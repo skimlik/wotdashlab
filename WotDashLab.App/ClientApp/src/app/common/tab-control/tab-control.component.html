@@ -1,7 +1,9 @@
 <div class="tab-control-container">
   <ng-container *ngFor="let tab of tabs; let ix = index">
     <div
+      *ngIf="!tab?.hide"
       class="tab"
+      [attr.disabled]="tab?.disabled"
       [attr.data-key]="tab.key"
       [attr.data-index]="ix"
       (click)="onTabClick(tab)"

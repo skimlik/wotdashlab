@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { IAccountProfileState } from "../../store/profile/account-profile.state";
-import { StatisticsService, StatisticsServiceFactory } from "../statistics/statistics.service";
+import { IAccountProfileState } from '../../store/profile/account-profile.state';
+import { StatisticsService, StatisticsServiceFactory } from '../statistics/statistics.service';
 
 @Component({
   selector: 'app-account-statistics-card',
-  templateUrl: 'account-statistics-card-component.component.html',
-  styleUrls: ['account-statistics-card-component.component.scss'],
+  templateUrl: 'account-statistics-card-component.html',
+  styleUrls: ['account-statistics-card-component.scss', 'account-statistics-grid.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

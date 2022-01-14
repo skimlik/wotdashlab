@@ -1,0 +1,34 @@
+<div class="game-modes-container">
+  <div class="grid">
+    <div class="grid-row grid-header-row">
+      <div class="grid-cell grid-header-cell">Battle type</div>
+      <div class="grid-cell grid-header-cell">Total battles <small>({{profile?.statistics?.all?.battles | number}})</small></div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Team</div>
+      <div class="grid-cell">{{profile?.statistics?.team?.battles | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Company</div>
+      <div class="grid-cell">{{profile?.statistics?.company?.battles | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Team</div>
+      <div class="grid-cell">{{profile?.statistics?.team?.battles | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Historical</div>
+      <div class="grid-cell">{{profile?.statistics?.historical?.battles | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Clan</div>
+      <div class="grid-cell">{{profile?.statistics?.clan?.battles | number}}</div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-cell">Stronghold <small class="mute">(Def. / Skirmish)</small></div>
+      <div class="grid-cell">
+        {{profile?.statistics?.strongholdDefense?.battles | number}} / {{profile?.statistics?.strongholdSkirmish?.battles | number}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,8 +17,8 @@
       font-weight: 500;
     }
 
-    &:disabled {
-      color: $bs-gray;
+    &:disabled, &[disabled='true'] {
+      color: $bs-gray-light;
       cursor: not-allowed;
     }
   }

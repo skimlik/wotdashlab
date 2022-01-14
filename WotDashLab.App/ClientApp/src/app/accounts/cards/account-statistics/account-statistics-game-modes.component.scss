@@ -1,0 +1,19 @@
+@import "~/src/assets/variables";
+
+.game-modes-container {
+  .grid {
+    .grid-row {
+      .grid-cell {
+        &:first-child {
+          width: 13em;
+          flex: 0 0 auto;
+        }
+        &:last-child {
+          flex: 1 1 auto;
+          text-align: right;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

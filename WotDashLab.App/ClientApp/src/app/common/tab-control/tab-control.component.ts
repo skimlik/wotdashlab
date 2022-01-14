@@ -17,6 +17,9 @@ export class TabControlComponent implements OnInit {
   ngOnInit(): void { }
 
   onTabClick(tab): void {
+    if (tab.disabled) {
+      return;
+    }
     this.activeTab = tab;
     this.selected.emit(tab);
   }

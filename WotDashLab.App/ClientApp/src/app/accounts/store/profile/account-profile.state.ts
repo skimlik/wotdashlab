@@ -38,6 +38,12 @@ export interface IAccountProfileState {
     treesCut: number;
     frags: { [key: number]: number };
     all: IAccountStatistics;
+    clan: IAccountStatistics;
+    company: IAccountStatistics;
+    historical: IAccountStatistics;
+    strongholdDefense: IAccountStatistics;
+    strongholdSkirmish: IAccountStatistics;
+    team: IAccountStatistics;
   };
 }
 

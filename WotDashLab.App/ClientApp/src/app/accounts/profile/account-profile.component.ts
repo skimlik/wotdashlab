@@ -1,7 +1,7 @@
 ﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IAccountsState } from '../store/accounts-state';
 import { select, Store } from '@ngrx/store';
-import { combineLatest, Observable, Subject} from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import { activeAccountProfileSelector } from '../store/profile';
 import { IAccountProfileState } from '../store/profile/account-profile.state';
 import { ActivatedRoute } from '@angular/router';
@@ -20,18 +20,32 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   private _region = this.storage.getRegion();
   private _language$ = this.store.pipe(select(currentLanguageSelector));
   private _disposed$ = new Subject<void>();
+  private _allTabs: TabModel[] = [
+    {
+      key: 'profile',
+      name: 'Profile'
+    }, {
+      key: 'frags',
+      name: 'Frags'
+    }];
+  private _activeTab$ = new BehaviorSubject<TabModel>(this._allTabs[0]);
 
-  readonly tabs: TabModel[] = [{
-    key: 'profile',
-    name: 'Profile'
-  }, {
-    key: 'frags',
-    name: 'Frags'
-  }];
-  activeTab: TabModel = this.tabs?.[0];
   selectedProfile$: Observable<IAccountProfileState> = this.store.pipe(
     select(activeAccountProfileSelector)
   );
+
+  readonly tabs$ = this.selectedProfile$.pipe(
+    map((profile) => this._allTabs.map((t) => {
+      const hideFrags = t.key === 'frags' && !profile?.statistics?.frags;
+      const disabled = !profile || hideFrags;
+      return {
+        ...t,
+        disabled
+      };
+    })),
+  );
+
+  activeTab$ = this._activeTab$.asObservable();
 
   constructor(
     private store: Store<IAccountsState>,
@@ -41,7 +55,8 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const accountId$ = this.route.params.pipe(map((p) => +p['accountId']));
+    const accountIdParamName = 'accountId';
+    const accountId$ = this.route.params.pipe(map((p) => +p[accountIdParamName]));
 
     combineLatest([accountId$, this._language$])
     .pipe(takeUntil(this._disposed$))
@@ -60,9 +75,10 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._disposed$.next();
     this._disposed$.complete();
+    this._activeTab$.complete();
   }
 
   onTabSelected(tab: TabModel): void {
-    this.activeTab = tab;
+    this._activeTab$.next(tab);
   }
 }

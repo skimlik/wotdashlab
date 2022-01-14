@@ -25,7 +25,10 @@
       [frags]="profile?.statistics?.all?.frags || 0"
     ></app-account-frags-ratio-chart>
   </div>
-  <div class="sticker">
-    <app-account-statistics-card [profile]="profile"></app-account-statistics-card>
+  <div class="sticker full-width">
+    <div class="account-statistics-card-container">
+      <app-account-statistics-card class="acc-stat" [profile]="profile"></app-account-statistics-card>
+      <app-account-statistics-game-modes class="acc-stat" [profile]="profile"></app-account-statistics-game-modes>
+    </div>
   </div>
 </div>

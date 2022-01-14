@@ -1,7 +1,7 @@
 ﻿<div class="account-profile-container" *ngIf="selectedProfile$ | async as profile">
-  <app-tabs [tabs]="tabs" [activeTab]="activeTab" (selected)="onTabSelected($event)"></app-tabs>
+  <app-tabs [tabs]="tabs$ | async" [activeTab]="activeTab$ | async" (selected)="onTabSelected($event)"></app-tabs>
 
-  <div class="account-profile-content" [ngSwitch]="activeTab.key">
+  <div class="account-profile-content" *ngIf="activeTab$ | async as activeTab" [ngSwitch]="activeTab.key">
     <div class="profile-content" *ngSwitchCase="'profile'">
       <div class="profiles-attributes">
         <app-account-attributes [profile]="profile"></app-account-attributes>

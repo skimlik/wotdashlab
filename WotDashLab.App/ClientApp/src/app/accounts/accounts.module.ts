@@ -25,6 +25,7 @@ import { AccountAttributesComponent } from "./account-attributes.component";
 import { UnixDatePipe } from "../common/unix-date.pipe";
 import { AccountStatisticsCardComponent } from "./cards/account-statistics/account-statistics-card.component";
 import { AccountSearchEffects } from './store/search/account-search.effects';
+import { AccountStatisticsGameModesComponent } from './cards/account-statistics/account-statistics-game-modes.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,7 @@ const routes: Routes = [
     AccountBriefStatisticsCardComponent,
     MaxResultsCardComponent,
     AccountStatisticsCardComponent,
+    AccountStatisticsGameModesComponent,
     AccountProfileInfoGraphCardComponent,
     AccountWinRateChartComponent,
     AccountSurvivedRatioComponent,
