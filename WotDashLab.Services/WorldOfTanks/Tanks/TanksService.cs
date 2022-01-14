@@ -55,6 +55,10 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
             var requestBuilder = _requestBuilderFactory.CreateRequestBuilder(_userContext);
             requestBuilder.Language = string.IsNullOrWhiteSpace(request.Language) ? "ru" : request.Language;
             requestBuilder.Fields = string.Join(",", (request.Fields?.Any() ?? false) ? request.Fields : _defaultFields);
+            if (request.limit.HasValue)
+            {
+                requestBuilder.Add(WellKnownFieldNames.Limit, request.limit.ToString());   
+            }
             requestBuilder.Add("tank_id", string.Join(",", request.TankIds));
 
             var payload = requestBuilder.Build();

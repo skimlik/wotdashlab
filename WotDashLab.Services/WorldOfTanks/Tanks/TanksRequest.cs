@@ -9,6 +9,8 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
         public string Region { get; set; }
 
         public string Language { get; set; } = "ru";
+        
+        public int? limit { get; set; }
 
         public string[] Fields { get; set; }
     }

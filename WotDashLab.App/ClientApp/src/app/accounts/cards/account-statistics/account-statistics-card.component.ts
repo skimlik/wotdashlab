@@ -5,7 +5,7 @@ import { StatisticsService, StatisticsServiceFactory } from '../statistics/stati
 @Component({
   selector: 'app-account-statistics-card',
   templateUrl: 'account-statistics-card-component.html',
-  styleUrls: ['account-statistics-card-component.scss', 'account-statistics-grid.scss'],
+  styleUrls: ['account-statistics-card-component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 

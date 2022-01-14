@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AccountProfileService } from './account-profile.service';
+﻿import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {AccountProfileService} from './account-profile.service';
 import * as fromActions from './account-profile.actions';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import {filter, map, mergeMap} from 'rxjs/operators';
 
 @Injectable()
 export class AccountProfileEffects {
@@ -10,22 +10,23 @@ export class AccountProfileEffects {
     () =>
       this.actions$.pipe(
         ofType(fromActions.selectAccountById),
-        mergeMap((action) => (this.accountProfileService.fetch(
+        mergeMap((action) =>
+          this.accountProfileService.fetch(
             action.accountId,
             action.region,
             action.extend,
             action.fields,
             action.language
-          ))
+          )
         ),
-        filter(result => !!result),
-        map((profile) => fromActions.setAccountProperties({ account: profile }))
+        filter((result) => !!result),
+        map((profile) => fromActions.setAccountProperties({account: profile}))
       ),
-    { dispatch: true }
+    {dispatch: true}
   );
 
   constructor(
     private actions$: Actions,
-    private accountProfileService: AccountProfileService
+    private accountProfileService: AccountProfileService,
   ) {}
 }

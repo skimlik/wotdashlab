@@ -1,0 +1,23 @@
+.account-frags-container {
+  width: 100%;
+  position: relative;
+
+  .grid {
+    margin-top: 2em;
+    .name-cell {
+      width: 320px;
+      flex: 0 0 auto;
+    }
+    .nation-cell {
+      width: 130px;
+      flex: 0 0 auto;
+    }
+    .tier-cell {
+      width: 130px;
+      flex: 0 0 auto;
+    }
+    .count-cell {
+      flex: 1 1 auto;
+    }
+  }
+}

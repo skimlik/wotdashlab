@@ -1,4 +1,5 @@
 ﻿import { createSelector } from '@ngrx/store';
+import { SupportedLanguages } from 'src/app/common/constants/string-constraints';
 import { coreFeatureSelector } from '../index';
 
 export const appSettingsSelector = createSelector(
@@ -18,7 +19,7 @@ export const currentApiSelector = createSelector(
 
 export const currentLanguageSelector = createSelector(
   appSettingsSelector,
-  () => 'ru'
+  () => 'ru' as SupportedLanguages,
 );
 
 export const redirectsSelector = createSelector(

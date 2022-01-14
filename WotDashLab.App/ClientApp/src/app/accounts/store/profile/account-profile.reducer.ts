@@ -4,6 +4,7 @@ import * as fromActions from './account-profile.actions';
 
 const defaultState: ISelectedAccountsState = {
   profiles: {},
+  frags: {},
   activeAccountId: null,
   count: 0,
 };
@@ -25,5 +26,5 @@ export const selectedAccountReducer = createReducer(
       profiles: profilesCollection,
       count: Object.keys(profilesCollection).length,
     };
-  })
+  }),
 );

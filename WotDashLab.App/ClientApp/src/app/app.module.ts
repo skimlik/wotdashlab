@@ -14,7 +14,7 @@ import { ApplicationSettingsLoaderService } from './core/infrastructure/applicat
 import { AppCommonModule } from './common/app-common.module';
 import { LocalStorageService } from './core/infrastructure/local-storage.service';
 import { HeadersInterceptor } from './core/infrastructure/http';
-import { HomePageComponent } from "./home-page.component";
+import { HomePageComponent } from './home-page.component';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,5 @@
 ﻿import { createAction, props } from '@ngrx/store';
+import { SupportedLanguages, SupportedRegions } from 'src/app/common/constants/string-constraints';
 import { ProfileExtras } from './account-profile.service';
 import { IAccountProfileState } from './account-profile.state';
 
@@ -13,8 +14,8 @@ export const selectAccountById = createAction(
     accountId: number,
     extend?: ProfileExtras[],
     fields?: string[],
-    language: string,
-    region: string,
+    language: SupportedLanguages,
+    region: SupportedRegions,
   }>(),
 );
 
