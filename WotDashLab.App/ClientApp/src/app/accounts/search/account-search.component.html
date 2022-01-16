@@ -12,6 +12,9 @@
     <button (click)="search()" [disabled]="searchText?.length < 3" class="app-button">
       Search
     </button>
+    <button (click)="clearSearch()" [disabled]="!(this.canClearSearch$() | async)" class="app-button">
+      Clear Search
+    </button>
   </div>
   <div class="grid-container">
     <div class="grid-row grid-header-row">
@@ -41,9 +44,16 @@
         </div>
       </ng-container>
     </ng-container>
+    <div class="loading-overlay-container" *ngIf="loading$ | async as isLoading">
+      <app-loading-overlay
+        [isLoading]="isLoading"
+        [fullScreen]="false"
+        [transparentBackground]="true"
+      >
+      </app-loading-overlay>
+    </div>
   </div>
 </div>
-<app-loading-overlay [isLoading]="loading$ | async"></app-loading-overlay>
 <ng-template #noRows>
-  <div class="no-rows-overlay">No rows found, please refine your search.</div>
+  <div *ngIf="!(loading$ | async)" class="no-rows-overlay">No rows found, please refine your search.</div>
 </ng-template>

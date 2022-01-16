@@ -1,4 +1,8 @@
-<div class="loading-overlay" *ngIf="isLoading">
+<div
+  class="loading-overlay"
+  *ngIf="isLoading"
+  [ngClass]="{'embedded': !fullScreen, 'transparent': transparentBackground}"
+>
   <div class="spinner">
     <div class="circle circle-0"></div>
     <div class="circle circle-1"></div>

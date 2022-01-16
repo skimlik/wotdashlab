@@ -21,3 +21,8 @@ export const activeAccountProfileSelector = createSelector(
   activeAccountIdSelector,
   (state, accountId) => state.profiles[accountId]
 );
+
+export const accountProfileLoadingSelector = createSelector(
+  selectedAccountsFeatureSelector,
+  (state) => state.busy,
+);

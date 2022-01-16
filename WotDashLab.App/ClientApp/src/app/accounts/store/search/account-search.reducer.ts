@@ -22,4 +22,9 @@ export const accountSearchReducer = createReducer(
     ...state,
     busy: isBusy,
   })),
+  on(fromActions.clearAccountSearch, (state) => ({
+    ...state,
+    data: [],
+    searchTerm: '',
+  })),
 );

@@ -7,6 +7,7 @@ const defaultState: ISelectedAccountsState = {
   frags: {},
   activeAccountId: null,
   count: 0,
+  busy: false,
 };
 
 export const selectedAccountReducer = createReducer(
@@ -27,4 +28,8 @@ export const selectedAccountReducer = createReducer(
       count: Object.keys(profilesCollection).length,
     };
   }),
+  on(fromActions.setProfileLoading, (state, { busy }) => ({
+    ...state,
+    busy,
+  })),
 );

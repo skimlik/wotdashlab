@@ -19,6 +19,7 @@ export interface ISelectedAccountsState {
   activeAccountId?: number;
   profiles: {[accountId: number]: IAccountProfileState };
   frags: {[accountId: number]: IFragInfo[]};
+  busy: boolean;
 }
 
 export interface IAccountSearchState {

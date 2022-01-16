@@ -9,4 +9,5 @@ import { IAccountProfileState } from '../store/profile/account-profile.state';
 })
 export class AccountProfileComponent {
   @Input() profile: IAccountProfileState;
+  @Input() ready: boolean;
 }

@@ -7,7 +7,7 @@ import { TabModel } from 'src/app/common/tab-control/tab.model';
 import { LocalStorageService } from 'src/app/core/infrastructure/local-storage.service';
 import { currentLanguageSelector } from 'src/app/core/store/settings';
 import { IAccountsState } from '../store/accounts-state';
-import { activeAccountProfileSelector } from '../store/profile';
+import { accountProfileLoadingSelector, activeAccountProfileSelector } from '../store/profile';
 import * as fromProfileActions from '../store/profile/account-profile.actions';
 import { IAccountProfileState } from '../store/profile/account-profile.state';
 
@@ -32,6 +32,7 @@ export class AccountProfilePageComponent implements OnInit, OnDestroy {
     select(activeAccountProfileSelector)
   );
   readonly language$ = this.store.pipe(select(currentLanguageSelector));
+  readonly profileLoading$ = this.store.pipe(select(accountProfileLoadingSelector));
   readonly region = this.storage.getRegion();
 
   readonly tabs$ = this.selectedProfile$.pipe(

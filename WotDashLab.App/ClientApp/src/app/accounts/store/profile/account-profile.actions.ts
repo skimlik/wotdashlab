@@ -6,6 +6,7 @@ import { IAccountProfileState } from './account-profile.state';
 export const AccountProfileActionTypes = {
   SelectAccountById: '[Account Profile] Select account by Id',
   SetAccountProperties: '[Account Profile] Set account properties',
+  SetBusy: '[Account Profile] Set Loading',
 };
 
 export const selectAccountById = createAction(
@@ -22,4 +23,9 @@ export const selectAccountById = createAction(
 export const setAccountProperties = createAction(
   AccountProfileActionTypes.SetAccountProperties,
   props<{ account: IAccountProfileState }>(),
+);
+
+export const setProfileLoading = createAction(
+  AccountProfileActionTypes.SetBusy,
+  props<{ busy: boolean }>(),
 );

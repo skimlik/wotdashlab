@@ -7,6 +7,7 @@ export const AccountSearchActionTypes = {
   AccountSearchFailure: '[Account Search] Account Search failed',
   SetSearchText: '[Account Search] Set search text',
   SetLoading: '[Account Search] Set loading',
+  ClearSearch: '[Account Search] Clear Search',
 };
 
 export const createSearch = createAction(
@@ -32,4 +33,8 @@ export const setSearchText = createAction(
 export const setLoading = createAction(
   AccountSearchActionTypes.SetLoading,
   props<{ isBusy: boolean }>(),
+);
+
+export const clearAccountSearch = createAction(
+  AccountSearchActionTypes.ClearSearch,
 );

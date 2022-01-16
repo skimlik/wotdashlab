@@ -5,7 +5,7 @@ import { IAccountsState } from '../store/accounts-state';
 import { select, Store } from '@ngrx/store';
 import * as fromActions from '../store/search/account-search.actions';
 import { accountSearchExpressionSelector, accountSearchLoadingSelector, accountSearchResultSelector } from '../store/search';
-import { Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'account-search',
@@ -60,6 +60,25 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
 
   isWotProfile(games: string[]): boolean {
     return games?.some(g => g === 'wot') || false;
+  }
+
+  clearSearch(): void {
+    this.store.dispatch(fromActions.clearAccountSearch());
+  }
+
+  hasData$(): Observable<boolean> {
+    return this.rowData$.pipe(
+      map((data) => Array.isArray(data) && data.length > 0)
+    );
+  }
+
+  canClearSearch$(): Observable<boolean> {
+    return combineLatest([
+      this.hasData$(),
+      this._savedSearchText$
+    ]).pipe(
+      map(([hasData, text]) => hasData || !!text)
+    );
   }
 
   resolveGameName(value: string[]): string {

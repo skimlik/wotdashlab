@@ -6,6 +6,22 @@ import {filter, map, mergeMap} from 'rxjs/operators';
 
 @Injectable()
 export class AccountProfileEffects {
+  setLoading$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(fromActions.selectAccountById),
+      map(() => fromActions.setProfileLoading({ busy: true }))
+    ),
+    { dispatch: true }
+  );
+
+  setLoaded$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(fromActions.setAccountProperties),
+      map(() => fromActions.setProfileLoading({ busy: false }))
+    ),
+    { dispatch: true }
+  );
+
   fetchAccountById$ = createEffect(
     () =>
       this.actions$.pipe(
