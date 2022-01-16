@@ -15,3 +15,8 @@ export const accountSearchResultSelector = createSelector(
   accountSearchFeatureSelector,
   (state) => state.data,
 );
+
+export const accountSearchLoadingSelector = createSelector(
+  accountSearchFeatureSelector,
+  (state) => state.busy,
+);

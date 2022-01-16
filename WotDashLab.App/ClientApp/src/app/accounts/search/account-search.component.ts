@@ -4,7 +4,7 @@ import { filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { IAccountsState } from '../store/accounts-state';
 import { select, Store } from '@ngrx/store';
 import * as fromActions from '../store/search/account-search.actions';
-import { accountSearchExpressionSelector, accountSearchResultSelector } from '../store/search';
+import { accountSearchExpressionSelector, accountSearchLoadingSelector, accountSearchResultSelector } from '../store/search';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,6 +16,7 @@ export class AccountSearchComponent implements OnInit, OnDestroy {
   private _disposed$ = new Subject<void>();
   private _savedSearchText$ = this.store.pipe(select(accountSearchExpressionSelector));
 
+  readonly loading$ = this.store.pipe(select(accountSearchLoadingSelector));
   searchText = '';
   rowData$ = this.store.pipe(select(accountSearchResultSelector));
 

@@ -43,6 +43,7 @@
     </ng-container>
   </div>
 </div>
+<app-loading-overlay [isLoading]="loading$ | async"></app-loading-overlay>
 <ng-template #noRows>
   <div class="no-rows-overlay">No rows found, please refine your search.</div>
 </ng-template>

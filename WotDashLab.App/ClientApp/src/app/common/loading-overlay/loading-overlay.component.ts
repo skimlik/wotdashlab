@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class LoadingOverlayComponent {
   @Input() isLoading = false;
   @Input() transparentBackground = false;
+  @Input() fullScreen = true;
 }
