@@ -12,6 +12,7 @@ import { SecondsToTimePipe } from './seconds-to-time.pipe';
 import { NavComponent } from './nav/nav.component';
 import { DropDownButtonComponent } from './buttons/drop-down-button.component';
 import { TabControlComponent } from './tab-control/tab-control.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 const toExport = [
   SearchBoxComponent,
@@ -22,6 +23,7 @@ const toExport = [
   UnixDatePipe,
   SecondsToTimePipe,
   TabControlComponent,
+  LoadingOverlayComponent,
 ];
 
 @NgModule({
