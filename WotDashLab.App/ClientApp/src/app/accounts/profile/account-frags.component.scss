@@ -1,23 +1,51 @@
+@import "~/src/assets/variables";
+
 .account-frags-container {
   width: 100%;
   position: relative;
 
   .grid {
     margin-top: 2em;
+    .grid-row {
+      width: min(540px, 50%);
+    }
+
+    .grid-cell {
+      padding-left: 4px;
+    }
+
     .name-cell {
-      width: 320px;
+      width: 240px;
       flex: 0 0 auto;
     }
     .nation-cell {
-      width: 130px;
+      width: 90px;
       flex: 0 0 auto;
     }
     .tier-cell {
-      width: 130px;
+      width: 60px;
       flex: 0 0 auto;
     }
     .count-cell {
       flex: 1 1 auto;
+      text-align: right;
+      font-weight: bolder;
+    }
+
+    .aggregate-cell {
+      border-left: none;
+
+      &:first-child {
+        width: 80%;
+        background-color: #eee;
+        font-weight: 500;
+      }
+      &:last-child {
+        width: 20%;
+        background-color: #eee;
+        font-weight: 500;
+        text-align: right;
+      }
     }
   }
 }

@@ -26,3 +26,8 @@ export const accountProfileLoadingSelector = createSelector(
   selectedAccountsFeatureSelector,
   (state) => state.busy,
 );
+
+export const fragsSelector = createSelector(
+  selectedAccountsFeatureSelector,
+  (state) => state.frags,
+);

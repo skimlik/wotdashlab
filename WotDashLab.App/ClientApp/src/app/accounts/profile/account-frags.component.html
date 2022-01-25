@@ -6,11 +6,17 @@
       <div class="grid-cell grid-header-cell tier-cell">Tier</div>
       <div class="grid-cell grid-header-cell count-cell">Frags count</div>
     </div>
-    <div class="grid-row" *ngFor="let tank of tanks$ | async">
-      <div class="gird-cell name-cell">{{tank.name}}</div>
-      <div class="gird-cell nation-cell">{{tank.nation}}</div>
-      <div class="gird-cell tier-cell">{{tank.tier}}</div>
-      <div class="gird-cell count-cell">{{tank.count}}</div>
+    <div class="aggregate-row grid-row" *ngIf="fragsCount">
+      <div class="aggregate-cell grid-cell">Total vehicle types</div>
+      <div class="aggregate-cell grid-cell">{{ fragsCount }}</div>
+    </div>
+    <div class="grid-row" *ngFor="let tank of getFragsSorted$() | async">
+      <div class="grid-cell name-cell">{{ tank.name }}</div>
+      <div class="grid-cell nation-cell">{{ tank.nation | uppercase }}</div>
+      <div class="grid-cell tier-cell">{{ tank.tier }}</div>
+      <div class="grid-cell count-cell">{{ getFragsCount(tank.id) | number }}</div>
     </div>
   </div>
+
+  <app-loading-overlay [isLoading]="!ready"></app-loading-overlay>
 </div>

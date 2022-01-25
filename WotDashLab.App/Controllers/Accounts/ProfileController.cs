@@ -44,5 +44,15 @@ namespace WotDashLab.WebApi.Controllers.Accounts
 
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("{accountId:int}/frags")]
+        public async Task<IActionResult> GetAccountFrags(
+            [FromRoute] string region,
+            [FromRoute] int accountId,
+            CancellationToken token)
+        {
+            return Ok();
+        }
     }
 }

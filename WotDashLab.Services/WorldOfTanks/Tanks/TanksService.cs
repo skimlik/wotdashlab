@@ -12,6 +12,7 @@ namespace WotDashLab.Services.WorldOfTanks.Tanks
 {
     internal class TanksService : ITanksService
     {
+        // Limit 100 records
         private const string Url = "encyclopedia/vehicles";
         private const ApiType ApiType = Wot.Client.Contracts.ApiType.Wot;
 

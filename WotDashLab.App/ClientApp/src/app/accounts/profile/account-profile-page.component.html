@@ -10,6 +10,7 @@
       <div class="frags-container" *ngSwitchCase="'frags'">
         <app-account-frags
           [profile]="profile"
+          [ready]="!(profileLoading$ | async)"
           [region]="region"
           [language]="language$ | async"
         ></app-account-frags>

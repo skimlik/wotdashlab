@@ -5,6 +5,10 @@ import { IWgnAccountSearchResult } from '../account';
 import { accountSearchReducer } from './search/account-search.reducer';
 import { ITankInfoModel } from 'src/app/core-api/tanks/tank-info.model';
 
+export interface IFragInfoMap {
+  [tankId: number]: ITankInfoModel;
+}
+
 export interface IAccountsState {
   selectedAccounts: ISelectedAccountsState;
   accountSearch: IAccountSearchState;
@@ -18,7 +22,7 @@ export interface ISelectedAccountsState {
   count: number;
   activeAccountId?: number;
   profiles: {[accountId: number]: IAccountProfileState };
-  frags: {[accountId: number]: IFragInfo[]};
+  frags: {[accountId: number]: IFragInfoMap};
   busy: boolean;
 }
 

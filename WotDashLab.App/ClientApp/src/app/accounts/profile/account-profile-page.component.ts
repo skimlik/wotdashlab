@@ -51,7 +51,7 @@ export class AccountProfilePageComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<IAccountsState>,
     private route: ActivatedRoute,
-    private storage: LocalStorageService,) {
+    private storage: LocalStorageService) {
     }
 
   ngOnInit(): void {

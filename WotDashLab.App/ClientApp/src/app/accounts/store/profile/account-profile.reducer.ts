@@ -32,4 +32,24 @@ export const selectedAccountReducer = createReducer(
     ...state,
     busy,
   })),
+  on(fromActions.fragsPageLoaded, (state, { accountId, frags }) => {
+    const byAccount = state.frags[accountId] || {};
+    const newPage = frags.reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
+
+    const updated = {
+      ...state.frags,
+      [accountId]: {
+        ...byAccount,
+        ...newPage,
+      }
+    };
+
+    return {
+      ...state,
+      frags: updated,
+    };
+  }),
 );
